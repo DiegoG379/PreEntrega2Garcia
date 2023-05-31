@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+//Formulario del simulador - Inicio
+
+.formulario {
+    height: auto;
+    width: 75%;
+    margin: 30px auto 0px auto;
+    padding: 15px;
+    background-color: #5DADE2;
+    text-align: center;
+
+    & input,
+    select {
+        text-align: center;
+    }
+
+    & h2 {
+        padding: 10px 0px 10px 0px;
+        font-family: patua;
+        font-size: 33px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    & h3 {
+        padding: 10px 0px 10px 0px;
+        font-family: patua;
+        font-size: 25px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    p {
+        padding: 10px 10px 10px 10px;
+        font-family: arimo;
+        text-align: left;
+        font-size: 20px;
+    }
+}
+
+.detalleConversor{
+    padding: 40px 10px 10px 10px;
+    font-family: arimo;
+    text-align: left;
+    font-size: 20px;
+}
+
+.conversor {
+    margin: 10px auto 10px auto;
+    border: solid;
+    text-align: center;
+
+    & select {
+        text-align: center;
+    }
+}
+
+.secciones {
+    border: solid;
+
+    & input{
+        margin: 10px auto 10px auto;
+    }
+
+    & select{
+        margin: 10px auto 10px auto;
+    }
+}
+
+
+
+
+
+
+
+.boton {
+    margin: 10px 0px 10px 0px;
+    font-family: patua;
+    width: 100px;
+}
+
+
+
+//Formulario del simulador - Final

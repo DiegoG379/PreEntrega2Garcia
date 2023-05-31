@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.formulario {
+  height: auto;
+  width: 75%;
+  margin: 30px auto 0px auto;
+  padding: 15px;
+  background-color: #5DADE2;
+  text-align: center;
+}
+.formulario input,
+.formulario select {
+  text-align: center;
+}
+.formulario h2 {
+  padding: 10px 0px 10px 0px;
+  font-family: patua;
+  font-size: 33px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.formulario h3 {
+  padding: 10px 0px 10px 0px;
+  font-family: patua;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.formulario p {
+  padding: 10px 10px 10px 10px;
+  font-family: arimo;
+  text-align: left;
+  font-size: 20px;
+}
+
+.detalleConversor {
+  padding: 40px 10px 10px 10px;
+  font-family: arimo;
+  text-align: left;
+  font-size: 20px;
+}
+
+.conversor {
+  margin: 10px auto 10px auto;
+  border: solid;
+  text-align: center;
+}
+.conversor select {
+  text-align: center;
+}
+
+.secciones {
+  border: solid;
+}
+.secciones input {
+  margin: 10px auto 10px auto;
+}
+.secciones select {
+  margin: 10px auto 10px auto;
+}
+
+.boton {
+  margin: 10px 0px 10px 0px;
+  font-family: patua;
+  width: 100px;
+}/*# sourceMappingURL=estilos.css.map */
