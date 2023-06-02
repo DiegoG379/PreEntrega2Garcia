@@ -19,28 +19,27 @@ let gastoAlojamiento = 60;
 let gastoComidaDia = 20;
 let gastoExtraPersona = 20;
 
-let gastoComidaTotal = (gastoComidaDia * diasViaje);
-let costoTotalViaje = ((gastoTransportePersona + gastoComidaTotal + gastoExtraPersona) * cantidadPersonas) + gastoAlojamiento;
-let presupuestoTotal = presupuesto - costoTotalViaje;
+let costoComidaTotal = (gastoComidaDia * diasViaje);
+let costoTotalViaje = ((gastoTransportePersona + costoComidaTotal + gastoExtraPersona) * cantidadPersonas) + gastoAlojamiento;
+let presupuestoRestante = presupuesto - costoTotalViaje;
 
 console.log(`El costo total estimado para tu viaje es de: $${costoTotalViaje}.`);
 
 //Función de porcentaje
 
-let porcentaje = 0;
 function porcentajeDelTotal(presupuesto, porcentaje) {
     return presupuesto * porcentaje;
 }
 
 // Valores de referencia: Transporte: 30%, Alojamiento: 25%, Comida: 25%, Extras 20%. Resto menor al 10% es presupuesto ajustado.
 
-if (presupuestoTotal >= 0) {
-    console.log(`El resto de tu presupuesto es de $${presupuestoTotal}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
-    if (porcentajeDelTotal(presupuesto, 0.10) > (presupuestoTotal)) {
+if (presupuestoRestante >= 0) {
+    console.log(`El resto de tu presupuesto es de $${presupuestoRestante}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
+    if (porcentajeDelTotal(presupuesto, 0.10) > presupuestoRestante) {
         console.log(`Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.`);
     }
 } else {
-    console.log(`Desafortunadamente, para poder llevar a cabo el viaje, se requeriría un presupuesto adicional de $${-presupuestoTotal} para cubrir todos los gastos necesarios.`);
+    console.log(`Desafortunadamente, para poder llevar a cabo el viaje, se requeriría un presupuesto adicional de $${-presupuestoRestante} para cubrir todos los gastos necesarios.`);
     console.log(`Deberías considerar lo siguiente:`);
     if (porcentajeDelTotal(presupuesto, 0.30) < (gastoTransportePersona * cantidadPersonas)) {
         console.log(`Podrías buscar un pasaje más económico para optimizar tu presupuesto.`);
@@ -48,7 +47,7 @@ if (presupuestoTotal >= 0) {
     if (porcentajeDelTotal(presupuesto, 0.25) < gastoAlojamiento) {
         console.log(`Sería conveniente explorar opciones de alojamiento más asequibles para optimizar tu presupuesto.`);
     }
-    if (porcentajeDelTotal(presupuesto, 0.25) < (gastoComidaTotal * cantidadPersonas)) {
+    if (porcentajeDelTotal(presupuesto, 0.25) < (costoComidaTotal * cantidadPersonas)) {
         console.log(`Considera buscar opciones de comida más económicas para aprovechar al máximo tu presupuesto destinado a las comidas.`);
     }
     if (porcentajeDelTotal(presupuesto, 0.20) < (gastoExtraPersona * cantidadPersonas)) {
