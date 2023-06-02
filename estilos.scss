@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-
+$color2: #F5B041;
 
 //Formulario del simulador - Inicio
 
@@ -63,7 +63,9 @@
 }
 
 .secciones {
-    border: solid;
+    margin: 20px auto 0px auto;
+    padding: 10px;
+    border: solid 5px;
 
     & input{
         margin: 10px auto 10px auto;

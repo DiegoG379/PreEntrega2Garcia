@@ -54,7 +54,9 @@
 }
 
 .secciones {
-  border: solid;
+  margin: 20px auto 0px auto;
+  padding: 10px;
+  border: solid 5px;
 }
 .secciones input {
   margin: 10px auto 10px auto;
