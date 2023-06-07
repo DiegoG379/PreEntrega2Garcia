@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-$color2: #F5B041;
-
 //Formulario del simulador - Inicio
 
 .formulario {
@@ -37,7 +35,7 @@ $color2: #F5B041;
         letter-spacing: 1px;
     }
 
-    p {
+    & p {
         padding: 10px 10px 10px 10px;
         font-family: arimo;
         text-align: left;
@@ -76,18 +74,10 @@ $color2: #F5B041;
     }
 }
 
-
-
-
-
-
-
 .boton {
     margin: 10px 0px 10px 0px;
     font-family: patua;
     width: 100px;
 }
-
-
 
 //Formulario del simulador - Final
