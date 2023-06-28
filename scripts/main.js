@@ -1,55 +1,53 @@
 //Simulador de gastos - Inicio
 
+// Conversor de divisas
+let conversorDivisa = [0.025, 37.56, 0.024, 41.19];
+
+function tomarMoneda() {
+    let moneda = parseInt(prompt("Por favor, elige una opción ingresando el número correspondiente: 1. Peso a Dólar, 2. Dólar a Peso, 3. Peso a Euro, 4. Euro a Peso, Presiona cualquier tecla para omitir el conversor."));
+
+    if (moneda === 1) {
+        let pesos = parseInt(prompt("Ingresa la cantidad de pesos que deseas convertir a dólares"));
+        let dolares = pesos * conversorDivisa[0];
+        return alert(`Serían USD ${dolares}`);
+    } else if (moneda === 2) {
+        let dolares = parseInt(prompt("Ingresa la cantidad de dólares que deseas convertir a pesos"));
+        let pesos = dolares * conversorDivisa[1];
+        return alert(`Serían UYU ${pesos}`);
+    } else if (moneda === 3) {
+        let pesos = parseInt(prompt("Ingresa la cantidad de pesos que deseas convertir a euros"));
+        let euros = pesos * conversorDivisa[2];
+        return alert(`Serían EUR ${euros}`);
+    } else if (moneda === 4) {
+        let euros = parseInt(prompt("Ingresa la cantidad de euros que deseas convertir a pesos"));
+        let pesos = euros / conversorDivisa[3];
+        return alert(`Serían UYU ${pesos}`);
+    } else {
+        let mensaje = "Decidiste no usar el conversor. Sigue con los pasos siguientes para simular los gastos de tu viaje";
+        return alert(mensaje);
+    }
+}
+
+
+let resultado = tomarMoneda();
+
 //Se solicitan datos mediante prompt y se corrobora que sean bien ingresados mediante bucle while.
 
-let presupuesto = parseInt(prompt("¿Cuál es el presupuesto para tu viaje?"));
-if (isNaN(presupuesto) || (presupuesto < 0)) {
-    while (isNaN(presupuesto) || (presupuesto < 0)) {
-        presupuesto = parseInt(prompt("Por favor, ingresa un número para continuar. Necesitamos saber el presupuesto total para tu viaje."));
+function pedirDatos(mensaje) {
+    let valor = parseInt(prompt(mensaje));
+    while (isNaN(valor) || valor < 0) {
+        valor = parseInt(prompt("Por favor, ingresa un número válido."));
     }
+    return valor;
 }
 
-let diasViaje = parseInt(prompt("¿Cuál es la duración en días de tu viaje?"));
-if (isNaN(diasViaje) || (diasViaje < 0)) {
-    while (isNaN(diasViaje) || (diasViaje < 0)) {
-        diasViaje = parseInt(prompt("Por favor, ingresa el número de días que durará tu viaje."));
-    }
-}
-
-let cantidadPersonas = parseInt(prompt("¿Cuál es la cantidad de personas que viajarán?"));
-if (isNaN(cantidadPersonas) || (cantidadPersonas < 0)) {
-    while (isNaN(cantidadPersonas) || (cantidadPersonas < 0)) {
-        cantidadPersonas = parseInt(prompt("Por favor, ingresa el número de personas que participarán en el viaje."));
-    }
-}
-
-let gastoTransportePersona = parseInt(prompt("¿Cuánto estarías dispuesto/a a gastar en pasajes?"));
-if (isNaN(gastoTransportePersona) || (gastoTransportePersona < 0)) {
-    while (isNaN(gastoTransportePersona) || (gastoTransportePersona < 0)) {
-        gastoTransportePersona = parseInt(prompt("Por favor, ingresa un número válido para el gasto en transporte."));
-    }
-}
-
-let gastoAlojamiento = parseInt(prompt("¿Cuánto estarías dispuesto/a a gastar en alojamiento?"));
-if (isNaN(gastoAlojamiento) || (gastoAlojamiento < 0)) {
-    while (isNaN(gastoAlojamiento) || (gastoAlojamiento < 0)) {
-        gastoAlojamiento = parseInt(prompt("Por favor, ingresa un número válido para el gasto en alojamiento."));
-    }
-}
-
-let gastoComidaDia = parseInt(prompt("¿Cuánto estarías dispuesto/a a gastar en comidas por día y por persona?"));
-if (isNaN(gastoComidaDia) || (gastoComidaDia < 0)) {
-    while (isNaN(gastoComidaDia) || (gastoComidaDia < 0)) {
-        gastoComidaDia = parseInt(prompt("Por favor, ingresa un número válido para el gasto en comidas"));
-    }
-}
-
-let gastoExtraPersona = parseInt(prompt("¿Cuánto estarías dispuesto/a a gastar en otras actividades durante tu viaje?"));
-if (isNaN(gastoExtraPersona) || (gastoExtraPersona < 0)) {
-    while (isNaN(gastoExtraPersona) || (gastoExtraPersona < 0)) {
-        gastoExtraPersona = parseInt(prompt("Por favor, ingresa un número válido para el gasto en actividades extras."));
-    }
-}
+let presupuesto = pedirDatos("¿Cuál es el presupuesto para tu viaje?");
+let diasViaje = pedirDatos("¿Cuál es la duración en días de tu viaje?");
+let cantidadPersonas = pedirDatos("¿Cuál es la cantidad de personas que viajarán?");
+let gastoTransportePersona = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en pasajes?");
+let gastoAlojamiento = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en alojamiento?");
+let gastoComidaDia = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en comidas por día y por persona?");
+let gastoExtraPersona = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en otras actividades durante tu viaje?");
 
 let costoComidaTotal = (gastoComidaDia * diasViaje);
 let costoTotalViaje = ((gastoTransportePersona + costoComidaTotal + gastoExtraPersona) * cantidadPersonas) + gastoAlojamiento;
@@ -57,33 +55,73 @@ let presupuestoRestante = presupuesto - costoTotalViaje;
 
 alert(`El costo total estimado para tu viaje es de: $${costoTotalViaje}.`);
 
-//Función de porcentaje
+// Objeto de valores de referencia de porcentaje
+let valoresReferencia = {
+    ajustado: 0.10,
+    transporte: 0.30,
+    alojamiento: 0.25,
+    comida: 0.25,
+    extras: 0.20
+};
 
+// Función para calcular el porcentaje del presupuesto
 function porcentajeDelTotal(presupuesto, porcentaje) {
     return presupuesto * porcentaje;
 }
 
-// Valores de referencia: Transporte: 30%, Alojamiento: 25%, Comida: 25%, Extras 20%. Resto menor al 10% es presupuesto ajustado.
-
 if (presupuestoRestante >= 0) {
     alert(`El resto de tu presupuesto es de $${presupuestoRestante}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
-    if (porcentajeDelTotal(presupuesto, 0.10) > presupuestoRestante) {
-        alert(`Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.`);
+    if (porcentajeDelTotal(presupuesto, valoresReferencia.ajustado) > presupuestoRestante) {
+        alert("Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.");
     }
 } else {
     alert(`Desafortunadamente, para poder llevar a cabo el viaje, se requeriría un presupuesto adicional de $${-presupuestoRestante} para cubrir todos los gastos necesarios.`);
-    alert(`Deberías considerar lo siguiente:`);
-    if (porcentajeDelTotal(presupuesto, 0.30) < (gastoTransportePersona * cantidadPersonas)) {
-        alert(`Podrías buscar un pasaje más económico para optimizar tu presupuesto.`);
+    alert("Deberías considerar lo siguiente:");
+    if (porcentajeDelTotal(presupuesto, valoresReferencia.transporte) < (gastoTransportePersona * cantidadPersonas)) {
+        alert("Podrías buscar un pasaje más económico para optimizar tu presupuesto.");
     }
-    if (porcentajeDelTotal(presupuesto, 0.25) < gastoAlojamiento) {
-        alert(`Sería conveniente explorar opciones de alojamiento más asequibles para optimizar tu presupuesto.`);
+    if (porcentajeDelTotal(presupuesto, valoresReferencia.alojamiento) < gastoAlojamiento) {
+        alert("Sería conveniente explorar opciones de alojamiento más asequibles para optimizar tu presupuesto.");
     }
-    if (porcentajeDelTotal(presupuesto, 0.25) < (costoComidaTotal * cantidadPersonas)) {
-        alert(`Considera buscar opciones de comida más económicas para aprovechar al máximo tu presupuesto destinado a las comidas.`);
+    if (porcentajeDelTotal(presupuesto, valoresReferencia.comida) < (costoComidaTotal * cantidadPersonas)) {
+        alert("Considera buscar opciones de comida más económicas para aprovechar al máximo tu presupuesto destinado a las comidas.");
     }
-    if (porcentajeDelTotal(presupuesto, 0.20) < (gastoExtraPersona * cantidadPersonas)) {
-        alert(`Te sugerimos explorar opciones más económicas para las actividades y otros tours que tengas previsto`);
+    if (porcentajeDelTotal(presupuesto, valoresReferencia.extras) < (gastoExtraPersona * cantidadPersonas)) {
+        alert("Te sugerimos explorar opciones más económicas para las actividades y otros tours que tengas previstos.");
     }
+}
 
+
+
+//Consultar divisa a utilizar
+function preguntarDestinosDisponibles() {
+    alert("¡Tenemos un destino recomendado para ti basado en tu presupuesto en dólares! Disfruta de un paquete all-inclusive por 5 días.")
+    let pregunta = parseInt(prompt("¿Quieres conocer el destino disponible? Responde con 1 para sí o 2 para no."));
+    while (isNaN(valor) || valor < 1 || valor > 3) {
+        pregunta = parseInt(prompt("Por favor, responde con 1 para sí o 2 para no."));
+    }
+    return pregunta;
+}
+
+let divisa = preguntarDivisa();
+
+
+// Array de destinos disponibles
+let destinos = [
+    { nombre: "París", costo: 1500 },
+    { nombre: "Roma", costo: 1200 },
+    { nombre: "Nueva York", costo: 2000 },
+    { nombre: "Tokio", costo: 1800 },
+    { nombre: "Londres", costo: 1400 }
+];
+
+let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuesto);
+
+if (destinosDisponibles.length > 0) {
+    alert("Los destinos disponibles dentro de tu presupuesto son:");
+    destinosDisponibles.forEach(destino => {
+    alert(destino.nombre);
+});
+} else {
+    alert("Lo sentimos, no hay destinos disponibles dentro de tu presupuesto.");
 }
