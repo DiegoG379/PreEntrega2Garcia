@@ -1,11 +1,10 @@
 //Simulador de gastos - Inicio
 
 // Conversor de divisas
-let conversorDivisa = [0.025, 37.56, 0.024, 41.19];
 
+let conversorDivisa = [0.025, 37.56, 0.024, 41.19];
 function tomarMoneda() {
     let moneda = parseInt(prompt("Por favor, elige una opción ingresando el número correspondiente: 1. Peso a Dólar, 2. Dólar a Peso, 3. Peso a Euro, 4. Euro a Peso, Presiona cualquier tecla para omitir el conversor."));
-
     if (moneda === 1) {
         let pesos = parseInt(prompt("Ingresa la cantidad de pesos que deseas convertir a dólares"));
         let dolares = pesos * conversorDivisa[0];
@@ -20,14 +19,13 @@ function tomarMoneda() {
         return alert(`Serían EUR ${euros}`);
     } else if (moneda === 4) {
         let euros = parseInt(prompt("Ingresa la cantidad de euros que deseas convertir a pesos"));
-        let pesos = euros / conversorDivisa[3];
+        let pesos = euros * conversorDivisa[3];
         return alert(`Serían UYU ${pesos}`);
     } else {
         let mensaje = "Decidiste no usar el conversor. Sigue con los pasos siguientes para simular los gastos de tu viaje";
         return alert(mensaje);
     }
 }
-
 
 let resultado = tomarMoneda();
 
@@ -56,6 +54,7 @@ let presupuestoRestante = presupuesto - costoTotalViaje;
 alert(`El costo total estimado para tu viaje es de: $${costoTotalViaje}.`);
 
 // Objeto de valores de referencia de porcentaje
+
 let valoresReferencia = {
     ajustado: 0.10,
     transporte: 0.30,
@@ -65,6 +64,7 @@ let valoresReferencia = {
 };
 
 // Función para calcular el porcentaje del presupuesto
+
 function porcentajeDelTotal(presupuesto, porcentaje) {
     return presupuesto * porcentaje;
 }
@@ -91,37 +91,53 @@ if (presupuestoRestante >= 0) {
     }
 }
 
-
-
 //Consultar divisa a utilizar
+
+alert("¡Tal vez tengamos un destino recomendado para ti basado en tu presupuesto! Ingresa nuevamente tu presupuesto total en dólares, y te diremos qué paquete All-inclusive de 5 días tenemos disponible.");
 function preguntarDestinosDisponibles() {
-    alert("¡Tenemos un destino recomendado para ti basado en tu presupuesto en dólares! Disfruta de un paquete all-inclusive por 5 días.")
     let pregunta = parseInt(prompt("¿Quieres conocer el destino disponible? Responde con 1 para sí o 2 para no."));
-    while (isNaN(valor) || valor < 1 || valor > 3) {
+    while (isNaN(pregunta) || pregunta < 1 || pregunta > 2) {
         pregunta = parseInt(prompt("Por favor, responde con 1 para sí o 2 para no."));
     }
     return pregunta;
 }
 
-let divisa = preguntarDivisa();
+let pregunta = preguntarDestinosDisponibles();
 
+if (pregunta === 1) {
+function pedirPresupuestoDolares(mensaje) {
+    let presupuestoDolares = parseInt(prompt(mensaje));
+    while (isNaN(presupuestoDolares) || presupuestoDolares < 0) {
+        presupuestoDolares = parseInt(prompt("Por favor, ingresa un número válido."));
+    }
+    return presupuestoDolares;
+}
 
-// Array de destinos disponibles
+let presupuestoDolares = pedirPresupuestoDolares("¿Cuál es tu presupuesto total en dólares para gastar en tu viaje?");
+
 let destinos = [
-    { nombre: "París", costo: 1500 },
-    { nombre: "Roma", costo: 1200 },
-    { nombre: "Nueva York", costo: 2000 },
-    { nombre: "Tokio", costo: 1800 },
-    { nombre: "Londres", costo: 1400 }
+    { nombre: "Cancún", costo: 1500 },
+    { nombre: "Buenos Aires", costo: 650 },
+    { nombre: "Río de Janeiro", costo: 800 },
+    { nombre: "Santiago", costo: 1000 },
+    { nombre: "Lima", costo: 1150 },
+    { nombre: "Cartagena", costo: 1300 },
+    { nombre: "Punta del Este", costo: 400 },
+    { nombre: "Miami", costo: 2100 },
+    { nombre: "París", costo: 2800 }
 ];
 
-let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuesto);
+let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuestoDolares);
 
 if (destinosDisponibles.length > 0) {
     alert("Los destinos disponibles dentro de tu presupuesto son:");
     destinosDisponibles.forEach(destino => {
-    alert(destino.nombre);
+    alert(`Destino: ${destino.nombre}\nCosto: ${destino.costo} dólares`);
 });
 } else {
     alert("Lo sentimos, no hay destinos disponibles dentro de tu presupuesto.");
+}
+} else {
+    alert(
+        "Entendemos que no estés interesado en este momento. No obstante, estamos a tu disposición para brindarte asesoramiento en cualquier otra ocasión que lo necesites. ¡No dudes en contactarnos!");
 }
