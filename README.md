@@ -1,4 +1,4 @@
-# PreEntrega1Garcia
+# PreEntrega2Garcia
 # 💫 About Me:
 Simulador de Gastos de Viajes, un proyecto desarrollado para la carrera de JavaScript en CoderHouse. Esta aplicación permite calcular de manera fácil y práctica los gastos estimados de tus viajes, incluyendo transporte, alojamiento, alimentación y entretenimiento. La principal idea es que en base a los números ingresados por el usuario el simulador tome decisiones y envíe recomendaciones.
 
