@@ -1,7 +1,6 @@
 //Simulador de gastos - Inicio
 
 // Conversor de divisas
-
 let conversorDivisa = [0.025, 37.56, 0.024, 41.19];
 function tomarMoneda() {
     let moneda = parseInt(prompt("Por favor, elige una opción ingresando el número correspondiente: 1. Peso a Dólar, 2. Dólar a Peso, 3. Peso a Euro, 4. Euro a Peso, Presiona cualquier tecla para omitir el conversor."));
@@ -29,8 +28,7 @@ function tomarMoneda() {
 
 let resultado = tomarMoneda();
 
-//Se solicitan datos mediante prompt y se corrobora que sean bien ingresados mediante bucle while.
-
+//Se solicitan datos mediante prompt y se corrobora que sean bien ingresados mediante bucle while, posterior se realizan los cálculos para el simulador
 function pedirDatos(mensaje) {
     let valor = parseInt(prompt(mensaje));
     while (isNaN(valor) || valor < 0) {
@@ -53,8 +51,7 @@ let presupuestoRestante = presupuesto - costoTotalViaje;
 
 alert(`El costo total estimado para tu viaje es de: $${costoTotalViaje}.`);
 
-// Objeto de valores de referencia de porcentaje
-
+// Objeto de valores de referencia y función de porcentaje
 let valoresReferencia = {
     ajustado: 0.10,
     transporte: 0.30,
@@ -63,12 +60,11 @@ let valoresReferencia = {
     extras: 0.20
 };
 
-// Función para calcular el porcentaje del presupuesto
-
 function porcentajeDelTotal(presupuesto, porcentaje) {
     return presupuesto * porcentaje;
 }
 
+//Condicionales que evalúan y realizan recomendaciones personalizadas
 if (presupuestoRestante >= 0) {
     alert(`El resto de tu presupuesto es de $${presupuestoRestante}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
     if (porcentajeDelTotal(presupuesto, valoresReferencia.ajustado) > presupuestoRestante) {
@@ -91,8 +87,7 @@ if (presupuestoRestante >= 0) {
     }
 }
 
-//Consultar divisa a utilizar
-
+//Consultar por paquetes de viajes
 alert("¡Tal vez tengamos un destino recomendado para ti basado en tu presupuesto! Ingresa nuevamente tu presupuesto total en dólares, y te diremos qué paquete All-inclusive de 5 días tenemos disponible.");
 function preguntarDestinosDisponibles() {
     let pregunta = parseInt(prompt("¿Quieres conocer el destino disponible? Responde con 1 para sí o 2 para no."));
@@ -105,39 +100,45 @@ function preguntarDestinosDisponibles() {
 let pregunta = preguntarDestinosDisponibles();
 
 if (pregunta === 1) {
-function pedirPresupuestoDolares(mensaje) {
-    let presupuestoDolares = parseInt(prompt(mensaje));
-    while (isNaN(presupuestoDolares) || presupuestoDolares < 0) {
-        presupuestoDolares = parseInt(prompt("Por favor, ingresa un número válido."));
-    }
-    return presupuestoDolares;
+    function pedirPresupuestoDolares(mensaje) {
+        let presupuestoDolares = parseInt(prompt(mensaje));
+        while (isNaN(presupuestoDolares) || presupuestoDolares < 0) {
+            presupuestoDolares = parseInt(prompt("Por favor, ingresa un número válido."));
+        }
+        return presupuestoDolares;
 }
 
-let presupuestoDolares = pedirPresupuestoDolares("¿Cuál es tu presupuesto total en dólares para gastar en tu viaje?");
+    let presupuestoDolares = pedirPresupuestoDolares("¿Cuál es tu presupuesto total en dólares para gastar en tu viaje?");
 
-let destinos = [
-    { nombre: "Cancún", costo: 1500 },
-    { nombre: "Buenos Aires", costo: 650 },
-    { nombre: "Río de Janeiro", costo: 800 },
-    { nombre: "Santiago", costo: 1000 },
-    { nombre: "Lima", costo: 1150 },
-    { nombre: "Cartagena", costo: 1300 },
-    { nombre: "Punta del Este", costo: 400 },
-    { nombre: "Miami", costo: 2100 },
-    { nombre: "París", costo: 2800 }
-];
+    let destinos = [
+        { nombre: "Cancún", costo: 1500 },
+        { nombre: "Buenos Aires", costo: 650 },
+        { nombre: "Río de Janeiro", costo: 800 },
+        { nombre: "Santiago", costo: 1000 },
+        { nombre: "Lima", costo: 1150 },
+        { nombre: "Cartagena", costo: 1300 },
+        { nombre: "Punta del Este", costo: 400 },
+        { nombre: "Miami", costo: 2100 },
+        { nombre: "París", costo: 2800 }
+    ];
 
-let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuestoDolares);
+    let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuestoDolares);
 
-if (destinosDisponibles.length > 0) {
-    alert("Los destinos disponibles dentro de tu presupuesto son:");
+    if (destinosDisponibles.length > 0) {
+    destinosDisponibles.sort((a, b) => a.costo - b.costo);
+
+    alert("Los destinos disponibles dentro de tu presupuesto, son:");
     destinosDisponibles.forEach(destino => {
-    alert(`Destino: ${destino.nombre}\nCosto: ${destino.costo} dólares`);
-});
-} else {
+        alert(`Destino: ${destino.nombre}\nCosto: ${destino.costo} dólares`);
+    });
+    } else {
     alert("Lo sentimos, no hay destinos disponibles dentro de tu presupuesto.");
-}
+    }
 } else {
-    alert(
-        "Entendemos que no estés interesado en este momento. No obstante, estamos a tu disposición para brindarte asesoramiento en cualquier otra ocasión que lo necesites. ¡No dudes en contactarnos!");
+    alert("Entendemos que no estés interesado en este momento. No obstante, estamos a tu disposición para brindarte asesoramiento en cualquier otra ocasión que lo necesites. ¡No dudes en contactarnos!");
 }
+
+
+
+
+
