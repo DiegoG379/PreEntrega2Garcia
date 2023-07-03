@@ -1,144 +1,240 @@
 //Simulador de gastos - Inicio
 
 // Conversor de divisas
-let conversorDivisa = [0.025, 37.56, 0.024, 41.19];
-function tomarMoneda() {
-    let moneda = parseInt(prompt("Por favor, elige una opción ingresando el número correspondiente: 1. Peso a Dólar, 2. Dólar a Peso, 3. Peso a Euro, 4. Euro a Peso, Presiona cualquier tecla para omitir el conversor."));
-    if (moneda === 1) {
-        let pesos = parseInt(prompt("Ingresa la cantidad de pesos que deseas convertir a dólares"));
-        let dolares = pesos * conversorDivisa[0];
-        return alert(`Serían USD ${dolares}`);
-    } else if (moneda === 2) {
-        let dolares = parseInt(prompt("Ingresa la cantidad de dólares que deseas convertir a pesos"));
-        let pesos = dolares * conversorDivisa[1];
-        return alert(`Serían UYU ${pesos}`);
-    } else if (moneda === 3) {
-        let pesos = parseInt(prompt("Ingresa la cantidad de pesos que deseas convertir a euros"));
-        let euros = pesos * conversorDivisa[2];
-        return alert(`Serían EUR ${euros}`);
-    } else if (moneda === 4) {
-        let euros = parseInt(prompt("Ingresa la cantidad de euros que deseas convertir a pesos"));
-        let pesos = euros * conversorDivisa[3];
-        return alert(`Serían UYU ${pesos}`);
+let conversorDivisa = [0.025, 40];
+
+function convertirDivisa() {
+    let monto = document.getElementById('monto').value;
+    let monedaDe = document.getElementById('monedaDe').value;
+    let monedaA = document.getElementById('monedaA').value;
+    let resultado;
+
+    if (monedaDe === 'uyu' && monedaA === 'usd') {
+        resultado = monto * conversorDivisa[0];
+        document.getElementById('resultado').innerHTML = `UYU${monto} = USD${resultado}`;
+    } else if (monedaDe === 'usd' && monedaA === 'uyu') {
+        resultado = monto * conversorDivisa[1];
+        document.getElementById('resultado').innerHTML = `USD${monto} = UYU${resultado}`;
     } else {
-        let mensaje = "Decidiste no usar el conversor. Sigue con los pasos siguientes para simular los gastos de tu viaje";
-        return alert(mensaje);
+        resultado = 'No se puede realizar la conversión';
     }
 }
 
-let resultado = tomarMoneda();
+//Crear lista de activiades extras
+let gastoExtraPersona = 0;
 
-//Se solicitan datos mediante prompt y se corrobora que sean bien ingresados mediante bucle while, posterior se realizan los cálculos para el simulador
-function pedirDatos(mensaje) {
-    let valor = parseInt(prompt(mensaje));
-    while (isNaN(valor) || valor < 0) {
-        valor = parseInt(prompt("Por favor, ingresa un número válido."));
-    }
-    return valor;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    let actividades = [];
+    let gastosExtraPersona = 0;
 
-let presupuesto = pedirDatos("¿Cuál es el presupuesto para tu viaje?");
-let diasViaje = pedirDatos("¿Cuál es la duración en días de tu viaje?");
-let cantidadPersonas = pedirDatos("¿Cuál es la cantidad de personas que viajarán?");
-let gastoTransportePersona = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en pasajes?");
-let gastoAlojamiento = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en alojamiento?");
-let gastoComidaDia = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en comidas por día y por persona?");
-let gastoExtraPersona = pedirDatos("¿Cuánto estarías dispuesto/a a gastar en otras actividades durante tu viaje?");
+    document.getElementById("agregar").addEventListener("click", function () {
+        let actividad = document.getElementById("actividadInput").value;
+        let precio = parseFloat(document.getElementById("precioInput").value);
 
-let costoComidaTotal = (gastoComidaDia * diasViaje);
-let costoTotalViaje = ((gastoTransportePersona + costoComidaTotal + gastoExtraPersona) * cantidadPersonas) + gastoAlojamiento;
-let presupuestoRestante = presupuesto - costoTotalViaje;
-
-alert(`El costo total estimado para tu viaje es de: $${costoTotalViaje}.`);
-
-// Objeto de valores de referencia y función de porcentaje
-let valoresReferencia = {
-    ajustado: 0.10,
-    transporte: 0.30,
-    alojamiento: 0.25,
-    comida: 0.25,
-    extras: 0.20
-};
-
-function porcentajeDelTotal(presupuesto, porcentaje) {
-    return presupuesto * porcentaje;
-}
-
-//Condicionales que evalúan y realizan recomendaciones personalizadas
-if (presupuestoRestante >= 0) {
-    alert(`El resto de tu presupuesto es de $${presupuestoRestante}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
-    if (porcentajeDelTotal(presupuesto, valoresReferencia.ajustado) > presupuestoRestante) {
-        alert("Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.");
-    }
-} else {
-    alert(`Desafortunadamente, para poder llevar a cabo el viaje, se requeriría un presupuesto adicional de $${-presupuestoRestante} para cubrir todos los gastos necesarios.`);
-    alert("Deberías considerar lo siguiente:");
-    if (porcentajeDelTotal(presupuesto, valoresReferencia.transporte) < (gastoTransportePersona * cantidadPersonas)) {
-        alert("Podrías buscar un pasaje más económico para optimizar tu presupuesto.");
-    }
-    if (porcentajeDelTotal(presupuesto, valoresReferencia.alojamiento) < gastoAlojamiento) {
-        alert("Sería conveniente explorar opciones de alojamiento más asequibles para optimizar tu presupuesto.");
-    }
-    if (porcentajeDelTotal(presupuesto, valoresReferencia.comida) < (costoComidaTotal * cantidadPersonas)) {
-        alert("Considera buscar opciones de comida más económicas para aprovechar al máximo tu presupuesto destinado a las comidas.");
-    }
-    if (porcentajeDelTotal(presupuesto, valoresReferencia.extras) < (gastoExtraPersona * cantidadPersonas)) {
-        alert("Te sugerimos explorar opciones más económicas para las actividades y otros tours que tengas previstos.");
-    }
-}
-
-//Consultar por paquetes de viajes
-alert("¡Tal vez tengamos un destino recomendado para ti basado en tu presupuesto! Ingresa nuevamente tu presupuesto total en dólares, y te diremos qué paquete All-inclusive de 5 días tenemos disponible.");
-function preguntarDestinosDisponibles() {
-    let pregunta = parseInt(prompt("¿Quieres conocer el destino disponible? Responde con 1 para sí o 2 para no."));
-    while (isNaN(pregunta) || pregunta < 1 || pregunta > 2) {
-        pregunta = parseInt(prompt("Por favor, responde con 1 para sí o 2 para no."));
-    }
-    return pregunta;
-}
-
-let pregunta = preguntarDestinosDisponibles();
-
-if (pregunta === 1) {
-    function pedirPresupuestoDolares(mensaje) {
-        let presupuestoDolares = parseInt(prompt(mensaje));
-        while (isNaN(presupuestoDolares) || presupuestoDolares < 0) {
-            presupuestoDolares = parseInt(prompt("Por favor, ingresa un número válido."));
+        if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
+            alert("Por favor, ingresa una actividad válida y su precio.");
+            return;
         }
-        return presupuestoDolares;
-}
 
-    let presupuestoDolares = pedirPresupuestoDolares("¿Cuál es tu presupuesto total en dólares para gastar en tu viaje?");
+        let actividadPrecio = {
+            actividad: actividad,
+            precio: precio,
+        };
 
-    let destinos = [
-        { nombre: "Cancún", costo: 1500 },
-        { nombre: "Buenos Aires", costo: 650 },
-        { nombre: "Río de Janeiro", costo: 800 },
-        { nombre: "Santiago", costo: 1000 },
-        { nombre: "Lima", costo: 1150 },
-        { nombre: "Cartagena", costo: 1300 },
-        { nombre: "Punta del Este", costo: 400 },
-        { nombre: "Miami", costo: 2100 },
-        { nombre: "París", costo: 2800 }
-    ];
-
-    let destinosDisponibles = destinos.filter(destino => destino.costo <= presupuestoDolares);
-
-    if (destinosDisponibles.length > 0) {
-    destinosDisponibles.sort((a, b) => a.costo - b.costo);
-
-    alert("Los destinos disponibles dentro de tu presupuesto, son:");
-    destinosDisponibles.forEach(destino => {
-        alert(`Destino: ${destino.nombre}\nCosto: ${destino.costo} dólares`);
+        actividades.push(actividadPrecio);
+        let listaActividades = document.createElement("li");
+        listaActividades.textContent = `${actividad}: ${precio}`;
+        document.getElementById("actividadesLista").appendChild(listaActividades);
+        document.getElementById("actividadInput").value = "";
+        document.getElementById("precioInput").value = "";
+        let sumaPrecios = 0;
+        for (let i = 0; i < actividades.length; i++) {
+            sumaPrecios += actividades[i].precio;
+        }
+        gastoExtraPersona = sumaPrecios;
     });
-    } else {
-    alert("Lo sentimos, no hay destinos disponibles dentro de tu presupuesto.");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+
+
+
+
+
+
+    let medioTransporteSelect = document.getElementById("medioTransporte");
+    let pasajesInput = document.getElementById("pasajes");
+    let camposAdicionalesDiv = document.getElementById("camposAdicionales");
+    let consumoCombustibleInput = document.getElementById("consumoCombustible");
+    let distanciaKmInput = document.getElementById("distanciaKm");
+    let precioCombustibleInput = document.getElementById("precioCombustible");
+
+    medioTransporteSelect.addEventListener("change", function () {
+        mostrarCamposAdicionales();
+    });
+
+    function mostrarCamposAdicionales() {
+        let medioTransporte = medioTransporteSelect.value;
+
+        if (medioTransporte === "automovil") {
+            camposAdicionalesDiv.style.display = "block";
+            pasajesInput.style.display = "none";
+            pasajesInput.disabled = true;
+
+            let consumoCombustibleValor = parseFloat(consumoCombustibleInput.value) || 15;
+            console.log("Valor de consumo de combustible:", consumoCombustibleValor);
+
+            let distanciaKmValor = parseFloat(distanciaKmInput.value) || 0;
+            console.log("Valor de distancia en km:", distanciaKmValor);
+
+            let precioCombustibleValor = parseFloat(precioCombustibleInput.value) || 0;
+            console.log("Valor de precio de combustible:", precioCombustibleValor);
+
+            let gastoAutomovil = (distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
+
+            console.log("Gasto en automóvil:", gastoAutomovil);
+
+            return gastoAutomovil;
+        } else {
+            camposAdicionalesDiv.style.display = "none";
+            pasajesInput.style.display = "block";
+            pasajesInput.disabled = false;
+
+            let pasajesValor = parseFloat(pasajesInput.value) || 0;
+            console.log("Valor de pasajes:", pasajesValor);
+
+            return 0; // Otra opción si no se puede calcular el gasto en transporte por persona en este caso
+        }
     }
-} else {
-    alert("Entendemos que no estés interesado en este momento. No obstante, estamos a tu disposición para brindarte asesoramiento en cualquier otra ocasión que lo necesites. ¡No dudes en contactarnos!");
-}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    let enviarButton = document.getElementById('enviar');
+    enviarButton.addEventListener('click', function () {
+        // Toma de datos
+        let presupuesto = parseInt(document.getElementById('presupuesto').value);
+        let diasViaje = parseInt(document.getElementById('duracion').value);
+        let cantidadPersonas = parseInt(document.getElementById('personas').value);
+        let gastoTransportePersona = parseInt(document.getElementById('pasajes').value);
+        let gastoAlojamiento = parseInt(document.getElementById('alojamiento').value);
+        let gastoComidaDia = parseInt(document.getElementById('comidas').value);
+
+        let gastoTransporte = 0;
+        gastoTransporte = mostrarCamposAdicionales();
+        console.log("Gasto en transporte por persona:", gastoTransporte);
+        if (gastoTransporte != 0) {
+            gastoTransportePersona = (gastoTransporte / cantidadPersonas);
+        }
+
+        console.log('Presupuesto:', presupuesto);
+        console.log('Duración en días:', diasViaje);
+        console.log('Cantidad de personas:', cantidadPersonas);
+        console.log('Gasto total en pasajes:', gastoTransportePersona);
+        console.log('Gasto total de alojamiento:', gastoAlojamiento);
+        console.log('Gasto previsto de comida:', gastoComidaDia);
+        console.log('Consumo de combustible:', consumoCombustible);
+        console.log('Distancia en kilómetros:', distanciaKm);
+        console.log('Precio del combustible:', precioCombustible);
+        console.log('gasto extra:', gastoExtraPersona);
+
+
+        // Cálculo de costos
+        let costoComidaTotal = gastoComidaDia * diasViaje;
+        let costoTotalViaje = (gastoTransportePersona + costoComidaTotal + gastoExtraPersona) * cantidadPersonas + gastoAlojamiento;
+        let presupuestoRestante = presupuesto - costoTotalViaje;
+
+        console.log(costoComidaTotal);
+        console.log(costoTotalViaje);
+        console.log(presupuestoRestante);
+
+
+        // Objeto de valores de referencia de porcentaje
+        let valoresReferencia = {
+            transporte: 0.30,
+            alojamiento: 0.25,
+            comida: 0.25,
+            extras: 0.20
+        };
+
+        // Función para calcular el porcentaje del presupuesto
+        function porcentajeDelTotal(presupuesto, porcentaje) {
+            return presupuesto * porcentaje;
+        }
+
+        // Alertas
+        if (presupuestoRestante >= 0) {
+            alert(`El resto de tu presupuesto es de $${presupuestoRestante}, lo cual es suficiente para llevar a cabo el viaje que tenías planeado.`);
+            if (porcentajeDelTotal(presupuesto, 0.10) > presupuestoRestante) {
+                alert(`Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.`);
+            }
+        } else {
+            alert(`Desafortunadamente, para poder llevar a cabo el viaje, se requeriría un presupuesto adicional de $${-presupuestoRestante} para cubrir todos los gastos necesarios.`);
+            alert(`Deberías considerar lo siguiente:`);
+            if (porcentajeDelTotal(presupuesto, valoresReferencia.transporte) < (gastoTransportePersona * cantidadPersonas)) {
+                alert(`Podrías buscar un pasaje más económico para optimizar tu presupuesto.`);
+            }
+            if (porcentajeDelTotal(presupuesto, valoresReferencia.alojamiento) < gastoAlojamiento) {
+                alert(`Sería conveniente explorar opciones de alojamiento más asequibles para optimizar tu presupuesto.`);
+            }
+            if (porcentajeDelTotal(presupuesto, valoresReferencia.comida) < (costoComidaTotal * cantidadPersonas)) {
+                alert(`Considera buscar opciones de comida más económicas para aprovechar al máximo tu presupuesto destinado a las comidas.`);
+            }
+            if (porcentajeDelTotal(presupuesto, valoresReferencia.extras) < (gastoExtraPersona * cantidadPersonas)) {
+                alert(`Te sugerimos explorar opciones más económicas para las actividades y otros tours que tengas previstos.`);
+            }
+        }
+    });
+});

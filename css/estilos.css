@@ -4,69 +4,399 @@
   box-sizing: border-box;
 }
 
-.formulario {
+@font-face {
+  font-family: arimo;
+  src: url(../media/fonts/Arimo-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: patua;
+  src: url(../media/fonts/PatuaOne-Regular.ttf);
+}
+body {
+  background-repeat: repeat;
+  background-size: 20% auto;
+  background-image: url(../media/wa1.jpg);
+}
+
+.navbar {
+  height: 100px;
+  background-color: #8FA5C7;
+}
+
+.nav-item {
+  font-family: patua;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0px 20px 0px 20px;
+  margin: 0px 5px 0px 5px;
+}
+
+.nav-link {
+  color: black;
+  background-color: #8FA5C7;
+}
+.nav-link:hover {
+  color: #F58742;
+  background-color: #8FA5C7;
+}
+
+.navbar-toggler {
+  background-color: #D1E3FF;
+  color: #F58742;
+  font-size: 18px;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  border-radius: 500px;
+  border: black solid 5px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.introduccion {
+  height: auto;
+  width: 75%;
+  background-color: #8FA5C7;
+  color: black;
+  padding: 15px;
+  margin: 150px auto auto auto;
+  text-align: center;
+}
+.introduccion h1 {
+  font-family: patua;
+  font-size: 45px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 15px 0px 15px 0px;
+}
+.introduccion p {
+  font-family: arimo;
+  text-align: left;
+  font-size: 20px;
+  padding: 20px 25px 0px 25px;
+}
+
+.imagenes {
+  border: solid #F58742 2px;
+  margin: 35px auto 0px auto;
+  display: flex;
+  width: 90%;
+  height: 350px;
+}
+.imagenes img {
+  border: solid #F58742 2px;
+  width: 0px;
+  flex-grow: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: 1.8s ease;
+}
+.imagenes img:hover {
+  width: 25%;
+  filter: contrast(150%);
+}
+
+.simuladorYformulario {
+  color: black;
   height: auto;
   width: 75%;
   margin: 30px auto 0px auto;
   padding: 15px;
-  background-color: #5DADE2;
+  background-color: #8FA5C7;
   text-align: center;
 }
-.formulario input,
-.formulario select {
+.simuladorYformulario input,
+.simuladorYformulario select {
   text-align: center;
 }
-.formulario h2 {
+.simuladorYformulario h2 {
+  color: black;
   padding: 10px 0px 10px 0px;
   font-family: patua;
   font-size: 33px;
   font-weight: bold;
   letter-spacing: 2px;
 }
-.formulario h3 {
+.simuladorYformulario h3 {
+  color: black;
   padding: 10px 0px 10px 0px;
   font-family: patua;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 1px;
 }
-.formulario p {
+.simuladorYformulario p {
+  color: black;
   padding: 10px 10px 10px 10px;
   font-family: arimo;
   text-align: left;
   font-size: 20px;
 }
 
-.detalleConversor {
-  padding: 40px 10px 10px 10px;
-  font-family: arimo;
-  text-align: left;
-  font-size: 20px;
+.conversorContenedor {
+  margin: 15px 10px 15px 10px;
 }
 
 .conversor {
+  background-color: #D1E3FF;
+  box-shadow: 2px 2px 15px #F58742, -2px -2px 15px #F58742;
   margin: 10px auto 10px auto;
-  border: solid;
   text-align: center;
+}
+.conversor label {
+  font-weight: bold;
 }
 .conversor select {
   text-align: center;
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+}
+.conversor input {
+  text-align: center;
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+}
+.conversor button {
+  font-size: 18px;
+}
+.conversor .resultado {
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
 }
 
-.secciones {
-  margin: 20px auto 0px auto;
-  padding: 10px;
-  border: solid 5px;
+.seccionesSimulador {
+  background-color: #D1E3FF;
+  box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
+  margin: 15px 10px 15px 10px;
 }
-.secciones input {
+.seccionesSimulador input {
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
   margin: 10px auto 10px auto;
 }
-.secciones select {
+.seccionesSimulador select {
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
   margin: 10px auto 10px auto;
+}
+.seccionesSimulador .aclaraciones {
+  margin: 0;
+  padding: 0px 10px 10px 10px;
+  font-size: 16px;
+}
+.seccionesSimulador .lista {
+  list-style-type: none;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.seccionFormulario {
+  margin: 15px 10px 15px 10px;
+  padding: 5px;
+  font-family: arimo;
+  font-size: 20px;
+  text-align: center;
+}
+.seccionFormulario input {
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+}
+.seccionFormulario textarea {
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+  margin: auto;
+  font-family: arimo;
+  height: 150px;
+  text-align: center;
 }
 
 .boton {
-  margin: 10px 0px 10px 0px;
+  margin: 10px auto 10px auto;
+  padding: 2px 5px 2px 5px;
   font-family: patua;
   width: 100px;
+  color: #D1E3FF;
+  background-color: #8FA5C7;
+  box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
+}
+.boton:hover {
+  color: #8FA5C7;
+  background-color: #F58742;
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+}
+
+.pieDePagina {
+  width: auto;
+  height: 100px;
+  background-color: #8FA5C7;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.redes {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 25px;
+  color: black;
+  white-space: nowrap;
+}
+.redes:hover {
+  color: #F58742;
+}
+
+.derechos {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  white-space: normal;
+}
+
+@media screen and (max-width: 450px) {
+  .navbar {
+    height: 75px;
+  }
+  .nav-item {
+    font-size: 16px;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
+  }
+  .nav-link {
+    padding: 5px 0px 5px 15px;
+    color: black;
+  }
+  .logo {
+    width: 125px;
+    border-radius: 500px;
+    border: black solid 4px;
+    right: 0;
+    left: auto;
+    transform: translateX(0);
+  }
+  .introduccion {
+    width: 90%;
+    padding: 5px;
+    margin: 90px auto auto auto;
+  }
+  .introduccion h1 {
+    font-size: 33px;
+    padding: 5px 0px 5px 0px;
+  }
+  .introduccion p {
+    font-size: 16px;
+    padding: 10px 15px 0px 15px;
+  }
+  .simuladorYformulario {
+    width: 90%;
+    padding: 15px;
+  }
+  .simuladorYformulario h2 {
+    padding: 5px 0px 5px 0px;
+    font-size: 29px;
+  }
+  .simuladorYformulario h3 {
+    padding: 5px 0px 5px 0px;
+    font-size: 23px;
+  }
+  .simuladorYformulario p {
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+  }
+  .conversor {
+    margin: 10px auto 10px auto;
+  }
+  .seccionFormulario {
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  .areaTexto {
+    font-family: arimo;
+    height: 75px;
+  }
+  .pieDePagina {
+    height: 75px;
+    margin-top: 30px;
+  }
+  .redes {
+    font-size: 30px;
+    letter-spacing: 10px;
+  }
+  .derechos {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 450px) and (max-width: 600px) {
+  .navbar {
+    height: 75px;
+  }
+  .nav-item {
+    font-size: 16px;
+    padding: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
+  }
+  .nav-link {
+    padding: 5px 0px 5px 15px;
+  }
+  .logo {
+    width: 150px;
+    border-radius: 500px;
+    border: black solid 4px;
+  }
+  .introduccion {
+    width: 90%;
+    padding: 5px;
+    margin: 90px auto auto auto;
+  }
+  .introduccion h1 {
+    font-size: 33px;
+    padding: 5px 0px 5px 0px;
+  }
+  .introduccion p {
+    font-size: 16px;
+    padding: 10px 15px 0px 15px;
+  }
+  .simuladorYformulario {
+    width: 90%;
+    padding: 15px;
+  }
+  .simuladorYformulario h2 {
+    padding: 5px 0px 5px 0px;
+    font-size: 29px;
+  }
+  .simuladorYformulario h3 {
+    padding: 5px 0px 5px 0px;
+    font-size: 23px;
+  }
+  .simuladorYformulario p {
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+  }
+  .conversor {
+    margin: 10px auto 10px auto;
+  }
+  .seccionFormulario {
+    margin: 5px 5px 5px 5px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  .areaTexto {
+    font-family: arimo;
+    height: 75px;
+  }
+  .pieDePagina {
+    height: 75px;
+    margin-top: 30px;
+  }
+  .redes {
+    font-size: 35px;
+    letter-spacing: 20px;
+  }
+  .derechos {
+    font-size: 16px;
+  }
 }/*# sourceMappingURL=estilos.css.map */
