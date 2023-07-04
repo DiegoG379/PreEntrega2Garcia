@@ -21,38 +21,76 @@ function convertirDivisa() {
 }
 
 //Crear lista de activiades extras
+let actividades = [];
 let gastoExtraPersona = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-    let actividades = [];
-    let gastosExtraPersona = 0;
-
-    document.getElementById("agregar").addEventListener("click", function () {
-        let actividad = document.getElementById("actividadInput").value;
-        let precio = parseFloat(document.getElementById("precioInput").value);
+    function agregarActividad() {
+        const actividad = document.getElementById("actividadInput").value;
+        const precio = parseFloat(document.getElementById("precioInput").value);
 
         if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
             alert("Por favor, ingresa una actividad válida y su precio.");
             return;
         }
 
-        let actividadPrecio = {
+        const actividadPrecio = {
             actividad: actividad,
-            precio: precio,
+            precio: precio
         };
 
         actividades.push(actividadPrecio);
-        let listaActividades = document.createElement("li");
-        listaActividades.textContent = `${actividad}: ${precio}`;
-        document.getElementById("actividadesLista").appendChild(listaActividades);
-        document.getElementById("actividadInput").value = "";
-        document.getElementById("precioInput").value = "";
+        mostrarActividades();
+        calcularGastoExtraPersona();
+        limpiarCampos();
+    }
+
+    function eliminarActividad(indice) {
+        actividades.splice(indice, 1);
+        mostrarActividades();
+        calcularGastoExtraPersona();
+    }
+
+    function mostrarActividades() {
+        const listaActividades = document.getElementById("actividadesLista");
+        listaActividades.innerHTML = "";
+
+        actividades.forEach((actividad, indice) => {
+            const elementoLista = document.createElement("li");
+            const textoElemento = document.createTextNode(`${actividad.actividad}: ${actividad.precio}`);
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+            botonEliminar.addEventListener("click", () => {
+                eliminarActividad(indice);
+            });
+
+            botonEliminar.classList.add("boton");
+            botonEliminar.style.marginLeft = "20px";
+
+
+            elementoLista.appendChild(textoElemento);
+            elementoLista.appendChild(botonEliminar);
+            listaActividades.appendChild(elementoLista);
+        });
+    }
+
+    function calcularGastoExtraPersona() {
         let sumaPrecios = 0;
+
         for (let i = 0; i < actividades.length; i++) {
             sumaPrecios += actividades[i].precio;
         }
+
         gastoExtraPersona = sumaPrecios;
-    });
+    }
+
+    function limpiarCampos() {
+        document.getElementById("actividadInput").value = "";
+        document.getElementById("precioInput").value = "";
+    }
+
+    document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
 
 
