@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         actividades.forEach((actividad, indice) => {
             const elementoLista = document.createElement("li");
             const textoElemento = document.createTextNode(`${actividad.actividad}: ${actividad.precio}`);
-
             const botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
             botonEliminar.addEventListener("click", () => {
@@ -68,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             botonEliminar.classList.add("boton");
             botonEliminar.style.marginLeft = "20px";
 
-
             elementoLista.appendChild(textoElemento);
             elementoLista.appendChild(botonEliminar);
             listaActividades.appendChild(elementoLista);
@@ -77,11 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function calcularGastoExtraPersona() {
         let sumaPrecios = 0;
-
         for (let i = 0; i < actividades.length; i++) {
             sumaPrecios += actividades[i].precio;
         }
-
         gastoExtraPersona = sumaPrecios;
     }
 
@@ -89,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("actividadInput").value = "";
         document.getElementById("precioInput").value = "";
     }
-
     document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
 
@@ -209,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let gastoTransportePersona = parseInt(document.getElementById('pasajes').value);
         let gastoAlojamiento = parseInt(document.getElementById('alojamiento').value);
         let gastoComidaDia = parseInt(document.getElementById('comidas').value);
-
         let gastoTransporte = 0;
         gastoTransporte = mostrarCamposAdicionales();
         console.log("Gasto en transporte por persona:", gastoTransporte);
@@ -275,4 +269,28 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+
+
+
+
+    var presupuesto = document.createElement("p");
+    presupuesto.textContent = "Presupuesto: " + presupuesto;
+
+    var cantidadPersonas = document.createElement("p");
+    cantidadPersonas.textContent = "Viajeros: " + cantidadPersonas;
+
+    
+    var resultados = document.getElementById("resultados");
+    resultados.appendChild(presupuesto);
+    resultados.appendChild(cantidadPersonas);
+
+
+
+
+
+
+
+
 });
+
