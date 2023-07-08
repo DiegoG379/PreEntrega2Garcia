@@ -225,7 +225,21 @@ $color3: #F58742;
   }
 }
 
+.seccionesResultados{
+  background-color: $color1;
+  box-shadow: 2px 2px 4px $color3, -2px -2px 4px $color3;
+  margin: 15px 10px 15px 10px;
 
+  & p{
+    padding: 3px 0px 1px 10px;
+    font-size: 17px;
+  }
+}
+
+.recomendaciones{
+  color: $color3 !important;
+  font-weight: bold;
+}
 
 //Simulador - Final
 // Formulario - Inicio
@@ -298,6 +312,13 @@ $color3: #F58742;
   color: black;
   text-align: center;
   white-space: normal;
+}
+
+.botonTop{
+  font-size: 55px;
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
 }
 
 

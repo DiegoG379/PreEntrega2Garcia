@@ -193,6 +193,21 @@ body {
   font-weight: bold;
 }
 
+.seccionesResultados {
+  background-color: #D1E3FF;
+  box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
+  margin: 15px 10px 15px 10px;
+}
+.seccionesResultados p {
+  padding: 3px 0px 1px 10px;
+  font-size: 17px;
+}
+
+.recomendaciones {
+  color: #F58742 !important;
+  font-weight: bold;
+}
+
 .seccionFormulario {
   margin: 15px 10px 15px 10px;
   padding: 5px;
@@ -254,6 +269,13 @@ body {
   color: black;
   text-align: center;
   white-space: normal;
+}
+
+.botonTop {
+  font-size: 55px;
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
 }
 
 @media screen and (max-width: 450px) {
