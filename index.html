@@ -137,12 +137,12 @@
                     datos nos permitirán brindarte recomendaciones y cálculos precisos.
                 </p>
                 <div class="col-lg-12 d-flex flex-wrap">
-                    <input id="presupuesto" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number"
+                    <input id="presupuesto" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" name="presupuesto"
                         oninput="validarCampo(this)" min="0" placeholder="Presupuesto" />
-                    <input id="duracion" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0" oninput="validarCampo(this)"
-                        placeholder="Duración en días" />
-                    <input id="personas" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0" oninput="validarCampo(this)"
-                        placeholder="Cantidad de personas" />
+                    <input id="duracion" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
+                        oninput="validarCampo(this)" name="duracion" placeholder="Duración en días" />
+                    <input id="personas" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
+                        oninput="validarCampo(this)" name="personas" placeholder="Cantidad de personas" />
                 </div>
             </div>
             <!-- Sección Transporte -->
@@ -171,19 +171,23 @@
                     <strong>-Precio:</strong> Ingresa el precio por Litro del combustible.
                 </p>
                 <div class="col-lg-12 d-flex flex-wrap">
-                    <select id="medioTransporte" class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
+                    <select id="medioTransporte" name="medioTransporte"
+                        class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
                         <option value="avion">Avión</option>
                         <option value="barco">Barco</option>
                         <option value="tren">Tren</option>
                         <option value="automovil">Automóvil</option>
                         <option value="otros">Otros</option>
                     </select>
-                    <input type="number" id="pasajes" class="col-lg-4 col-md-9 col-sm-10 col-12"
-                        placeholder="Gasto total en pasajes" oninput="validarCampo(this)" min="0"/>
+                    <input type="number" id="pasajes" class="col-lg-4 col-md-9 col-sm-10 col-12" name="pasajes"
+                        placeholder="Gasto total en pasajes" oninput="validarCampo(this)" min="0" />
                     <div id="camposAdicionales" style="display: none">
-                        <input type="number" id="consumoCombustible" placeholder="Consumo" oninput="validarCampo(this)" min="0"/>
-                        <input type="number" id="distanciaKm" placeholder="Distancia" oninput="validarCampo(this)" min="0"/>
-                        <input type="number" id="precioCombustible" placeholder="Precio" oninput="validarCampo(this)" min="0"/>
+                        <input type="number" name="consumo" id="consumoCombustible" placeholder="Consumo"
+                            oninput="validarCampo(this)" min="0" />
+                        <input type="number" name="distancia" id="distanciaKm" placeholder="Distancia"
+                            oninput="validarCampo(this)" min="0" />
+                        <input type="number" name="precio" id="precioCombustible" placeholder="Precio"
+                            oninput="validarCampo(this)" min="0" />
                     </div>
                 </div>
             </div>
@@ -195,15 +199,15 @@
                     ofrecerte recomendaciones más precisas y ajustadas a tus necesidades.
                 </p>
                 <div class="col-lg-12 d-flex flex-wrap">
-                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
+                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoAlojamiento" name="tipoAlojamiento">
                         <option value="opcion1">Hotel</option>
                         <option value="opcion2">Apartamento</option>
                         <option value="opcion3">Hostal</option>
                         <option value="opcion4">Camping</option>
                         <option value="opcion5">Otro</option>
                     </select>
-                    <input type="number" id="alojamiento" class="col-lg-4 col-md-9 col-sm-10 col-12" type="text"
-                        placeholder="Gasto total de alojamiento" oninput="validarCampo(this)" min="0"/>
+                    <input type="number" id="alojamiento" class="col-lg-4 col-md-9 col-sm-10 col-12" type="text" name="alojamiento"
+                        placeholder="Gasto total de alojamiento" oninput="validarCampo(this)" min="0" />
                 </div>
             </div>
             <!-- Sección Comidas -->
@@ -222,14 +226,14 @@
                     <strong>-Solo Desayuno:</strong> Únicamente se brinda el desayuno.
                 </p>
                 <div class="col-lg-12 d-flex flex-wrap">
-                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
+                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoComidas" name="tipoComidas">
                         <option value="opcion1">Ninguna</option>
                         <option value="opcion2">All-inclusive</option>
                         <option value="opcion3">Media pensión</option>
                         <option value="opcion4">Desayuno</option>
                     </select>
-                    <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number"
-                        placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0"/>
+                    <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number" name="comidas"
+                        placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0" />
                 </div>
             </div>
             <!-- Sección Otras actividades -->
@@ -240,7 +244,8 @@
                     actividades.</p>
                 <input id="actividadInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="text"
                     placeholder="Actividad" />
-                <input id="precioInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="number" placeholder="Precio" oninput="validarCampo(this)" min="0"/>
+                <input id="precioInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="number" placeholder="Precio"
+                    oninput="validarCampo(this)" min="0" />
                 <button id="agregar" class="boton col-lg-4 col-md-12 col-sm-10 col-10" type="button">Agregar</button>
                 <ul class="lista" id="actividadesLista"></ul>
             </div>

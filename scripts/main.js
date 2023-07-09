@@ -1,5 +1,6 @@
 //Simulador de gastos - Inicio
 
+// Verificar que sean solamente números y además positivos en los campos input
 function validarCampo(input) {
     let valor = parseInt(input.value);
 
@@ -7,10 +8,6 @@ function validarCampo(input) {
         input.value = "";
     }
 }
-
-
-
-
 
 // Conversor de divisas
 let conversorDivisa = [0.025, 40];
@@ -32,74 +29,97 @@ function convertirDivisa() {
     }
 }
 
-//Crear lista de activiades extras
+// Crear lista de actividades extras
 let actividades = [];
 let gastoExtraPersona = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-    function agregarActividad() {
-        const actividad = document.getElementById("actividadInput").value;
-        const precio = parseFloat(document.getElementById("precioInput").value);
+  // Restaurar la lista de actividades al cargar la página
+restaurarActividades();
 
-        if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
-            alert("Por favor, ingresa una actividad válida y su precio.");
-            return;
-        }
+function agregarActividad() {
+    const actividad = document.getElementById("actividadInput").value;
+    const precio = parseFloat(document.getElementById("precioInput").value);
 
-        const actividadPrecio = {
-            actividad: actividad,
-            precio: precio
-        };
-
-        actividades.push(actividadPrecio);
-        mostrarActividades();
-        calcularGastoExtraPersona();
-        limpiarCampos();
+    if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
+        alert("Por favor, ingresa una actividad válida y su precio.");
+        return;
     }
 
+    const actividadPrecio = {
+        actividad: actividad,
+        precio: precio
+    };
+
+    actividades.push(actividadPrecio);
+    mostrarActividades();
+    calcularGastoExtraPersona();
+    guardarActividades();
+    limpiarCampos();
+}
+
     function eliminarActividad(indice) {
-        actividades.splice(indice, 1);
-        mostrarActividades();
-        calcularGastoExtraPersona();
+    actividades.splice(indice, 1);
+    mostrarActividades();
+    calcularGastoExtraPersona();
+    guardarActividades();
     }
 
     function mostrarActividades() {
-        const listaActividades = document.getElementById("actividadesLista");
-        listaActividades.innerHTML = "";
+    const listaActividades = document.getElementById("actividadesLista");
+    listaActividades.innerHTML = "";
 
-        actividades.forEach((actividad, indice) => {
-            const elementoLista = document.createElement("li");
-            const textoElemento = document.createTextNode(`${actividad.actividad}: ${actividad.precio}`);
-            const botonEliminar = document.createElement("button");
-            botonEliminar.textContent = "Eliminar";
-            botonEliminar.addEventListener("click", () => {
-                eliminarActividad(indice);
-            });
+    actividades.forEach((actividad, indice) => {
+        const elementoLista = document.createElement("li");
+        const textoElemento = document.createTextNode(
+        `${actividad.actividad}: ${actividad.precio}`
+      );
+      const botonEliminar = document.createElement("button");
+      botonEliminar.textContent = "Eliminar";
+      botonEliminar.addEventListener("click", () => {
+        eliminarActividad(indice);
+      });
 
-            botonEliminar.classList.add("boton");
-            botonEliminar.style.marginLeft = "20px";
+      botonEliminar.classList.add("boton");
+      botonEliminar.style.marginLeft = "20px";
 
-            elementoLista.appendChild(textoElemento);
-            elementoLista.appendChild(botonEliminar);
-            listaActividades.appendChild(elementoLista);
-        });
+      elementoLista.appendChild(textoElemento);
+      elementoLista.appendChild(botonEliminar);
+      listaActividades.appendChild(elementoLista);
+    });
+  }
+
+  function calcularGastoExtraPersona() {
+    let sumaPrecios = 0;
+    for (let i = 0; i < actividades.length; i++) {
+      sumaPrecios += actividades[i].precio;
     }
+    gastoExtraPersona = sumaPrecios;
+  }
 
-    function calcularGastoExtraPersona() {
-        let sumaPrecios = 0;
-        for (let i = 0; i < actividades.length; i++) {
-            sumaPrecios += actividades[i].precio;
-        }
-        gastoExtraPersona = sumaPrecios;
-    }
+  function limpiarCampos() {
+    document.getElementById("actividadInput").value = "";
+    document.getElementById("precioInput").value = "";
+  }
 
-    function limpiarCampos() {
-        document.getElementById("actividadInput").value = "";
-        document.getElementById("precioInput").value = "";
+  function guardarActividades() {
+    localStorage.setItem("actividades", JSON.stringify(actividades));
+  }
+
+  function restaurarActividades() {
+    const actividadesGuardadas = localStorage.getItem("actividades");
+    if (actividadesGuardadas) {
+      actividades = JSON.parse(actividadesGuardadas);
+      mostrarActividades();
+      calcularGastoExtraPersona();
     }
-    document.getElementById("agregar").addEventListener("click", agregarActividad);
+  }
+
+  document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
 
+
+// Toma de datos, procesamiento de los mismos y devolución de recomendaciones
 document.addEventListener('DOMContentLoaded', function () {
     let medioTransporteSelect = document.getElementById("medioTransporte");
     let pasajesInput = document.getElementById("pasajes");
@@ -244,3 +264,61 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+
+
+// Almacenamiento de datos en el formulario
+const formulario = document.querySelector('#simulador');
+const btnEnviar = document.querySelector('#enviar');
+
+btnEnviar.addEventListener('click', function() {
+    // Obtener los valores de los campos de entrada
+    const campos = formulario.querySelectorAll('input');
+    const valores = {};
+    
+    campos.forEach(function(campo) {
+    valores[campo.name] = campo.value;
+    });
+
+    const selectMedioTransporte = document.querySelector('#medioTransporte');
+    valores[selectMedioTransporte.name] = selectMedioTransporte.options[selectMedioTransporte.selectedIndex].value;
+
+    const selectTipoAlojamiento = document.querySelector('#tipoAlojamiento');
+    valores[selectTipoAlojamiento.name] = selectTipoAlojamiento.options[selectTipoAlojamiento.selectedIndex].value;
+
+    const selectTipoComidas = document.querySelector('#tipoComidas');
+    valores[selectTipoComidas.name] = selectTipoComidas.options[selectTipoComidas.selectedIndex].value;
+
+    // Almacenar los valores en local storage
+    localStorage.setItem('datosFormulario', JSON.stringify(valores));
+
+    // Restablecer los valores de los campos de entrada (opcional)
+    campos.forEach(function(campo) {
+    campo.value = '';
+    });
+
+    alert('Los datos se han almacenado en local storage.');
+
+    // Mostrar los datos almacenados
+    mostrarDatosAlmacenados();
+});
+
+// Función para mostrar los datos almacenados en los campos de entrada
+function mostrarDatosAlmacenados() {
+    const datosAlmacenados = localStorage.getItem('datosFormulario');
+
+    if (datosAlmacenados) {
+    const valores = JSON.parse(datosAlmacenados);
+
+    Object.keys(valores).forEach(function(nombreCampo) {
+        const campo = formulario.querySelector(`[name="${nombreCampo}"]`);
+        if (campo) {
+        campo.value = valores[nombreCampo];
+        }
+    });
+    }
+}
+
+// Mostrar los datos almacenados al cargar la página
+mostrarDatosAlmacenados();
