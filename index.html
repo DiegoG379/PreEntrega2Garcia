@@ -108,7 +108,7 @@
                     </div>
                     <div class="conversor col-lg-5 col-md-12 row">
                         <label for="monto">Monto:</label>
-                        <input type="text" id="monto" placeholder="Ingrese el monto" />
+                        <input type="number" id="monto" oninput="validarCampo(this)" min="0" placeholder="Ingrese el monto"/>
                         <label for="monedaDe">De:</label>
                         <select id="monedaDe">
                             <option value="uyu">UYU</option>
@@ -252,7 +252,8 @@
 
             <!-- Sección Botón -->
             <div class="seccionesSimulador text-center">
-                <button id="enviar" class="boton" type="button">Enviar</button>
+                <button id="borrarDatosAlmacenados" class="boton" type="button">Borrar</button>
+                <button id="enviar" class="boton" type="button">Enviar</button>                
             </div>
 
             <div class="seccionesResultados" id="resultados"></div>

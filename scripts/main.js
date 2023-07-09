@@ -13,7 +13,7 @@ function validarCampo(input) {
 let conversorDivisa = [0.025, 40];
 
 function convertirDivisa() {
-    let monto = document.getElementById('monto').value;
+    let monto = parseFloat(document.getElementById('monto').value);
     let monedaDe = document.getElementById('monedaDe').value;
     let monedaA = document.getElementById('monedaA').value;
     let resultado;
@@ -34,90 +34,89 @@ let actividades = [];
 let gastoExtraPersona = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Restaurar la lista de actividades al cargar la página
-restaurarActividades();
+    // Restaurar la lista de actividades al cargar la página
+    restaurarActividades();
 
-function agregarActividad() {
-    const actividad = document.getElementById("actividadInput").value;
-    const precio = parseFloat(document.getElementById("precioInput").value);
+    function agregarActividad() {
+        const actividad = document.getElementById("actividadInput").value;
+        const precio = parseFloat(document.getElementById("precioInput").value);
 
-    if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
-        alert("Por favor, ingresa una actividad válida y su precio.");
-        return;
+        if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
+            alert("Por favor, ingresa una actividad válida y su precio.");
+            return;
+        }
+
+        const actividadPrecio = {
+            actividad: actividad,
+            precio: precio
+        };
+
+        actividades.push(actividadPrecio);
+        mostrarActividades();
+        calcularGastoExtraPersona();
+        guardarActividades();
+        limpiarCampos();
     }
 
-    const actividadPrecio = {
-        actividad: actividad,
-        precio: precio
-    };
-
-    actividades.push(actividadPrecio);
-    mostrarActividades();
-    calcularGastoExtraPersona();
-    guardarActividades();
-    limpiarCampos();
-}
-
     function eliminarActividad(indice) {
-    actividades.splice(indice, 1);
-    mostrarActividades();
-    calcularGastoExtraPersona();
-    guardarActividades();
+        actividades.splice(indice, 1);
+        mostrarActividades();
+        calcularGastoExtraPersona();
+        guardarActividades();
     }
 
     function mostrarActividades() {
-    const listaActividades = document.getElementById("actividadesLista");
-    listaActividades.innerHTML = "";
+        const listaActividades = document.getElementById("actividadesLista");
+        listaActividades.innerHTML = "";
 
-    actividades.forEach((actividad, indice) => {
-        const elementoLista = document.createElement("li");
-        const textoElemento = document.createTextNode(
-        `${actividad.actividad}: ${actividad.precio}`
-      );
-      const botonEliminar = document.createElement("button");
-      botonEliminar.textContent = "Eliminar";
-      botonEliminar.addEventListener("click", () => {
-        eliminarActividad(indice);
-      });
+        actividades.forEach((actividad, indice) => {
+            const elementoLista = document.createElement("li");
+            const textoElemento = document.createTextNode(
+                `${actividad.actividad}: ${actividad.precio}`
+            );
+            const botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+            botonEliminar.addEventListener("click", () => {
+                eliminarActividad(indice);
+            });
 
-      botonEliminar.classList.add("boton");
-      botonEliminar.style.marginLeft = "20px";
+            botonEliminar.classList.add("boton");
+            botonEliminar.style.marginLeft = "20px";
 
-      elementoLista.appendChild(textoElemento);
-      elementoLista.appendChild(botonEliminar);
-      listaActividades.appendChild(elementoLista);
-    });
-  }
-
-  function calcularGastoExtraPersona() {
-    let sumaPrecios = 0;
-    for (let i = 0; i < actividades.length; i++) {
-      sumaPrecios += actividades[i].precio;
+            elementoLista.appendChild(textoElemento);
+            elementoLista.appendChild(botonEliminar);
+            listaActividades.appendChild(elementoLista);
+        });
     }
-    gastoExtraPersona = sumaPrecios;
-  }
 
-  function limpiarCampos() {
-    document.getElementById("actividadInput").value = "";
-    document.getElementById("precioInput").value = "";
-  }
-
-  function guardarActividades() {
-    localStorage.setItem("actividades", JSON.stringify(actividades));
-  }
-
-  function restaurarActividades() {
-    const actividadesGuardadas = localStorage.getItem("actividades");
-    if (actividadesGuardadas) {
-      actividades = JSON.parse(actividadesGuardadas);
-      mostrarActividades();
-      calcularGastoExtraPersona();
+    function calcularGastoExtraPersona() {
+        let sumaPrecios = 0;
+        for (let i = 0; i < actividades.length; i++) {
+            sumaPrecios += actividades[i].precio;
+        }
+        gastoExtraPersona = sumaPrecios;
     }
-  }
 
-  document.getElementById("agregar").addEventListener("click", agregarActividad);
+    function limpiarCampos() {
+        document.getElementById("actividadInput").value = "";
+        document.getElementById("precioInput").value = "";
+    }
+
+    function guardarActividades() {
+        localStorage.setItem("actividades", JSON.stringify(actividades));
+    }
+
+    function restaurarActividades() {
+        const actividadesGuardadas = localStorage.getItem("actividades");
+        if (actividadesGuardadas) {
+            actividades = JSON.parse(actividadesGuardadas);
+            mostrarActividades();
+            calcularGastoExtraPersona();
+        }
+    }
+
+    document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
-
 
 // Toma de datos, procesamiento de los mismos y devolución de recomendaciones
 document.addEventListener('DOMContentLoaded', function () {
@@ -230,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultadosDiv.appendChild(resultadoPresupuestoRestante);
             if (porcentajeDelTotal(presupuesto, valoresReferencia.ajustado) > presupuestoRestante) {
                 let resultadoPresupuestoAjustado = document.createElement("p");
-                resultadoPresupuestoAjustado.textContent = `Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estoy seguro de que podrás hacer un gran viaje.`;
+                resultadoPresupuestoAjustado.textContent = `Ten en cuenta que tu presupuesto disponible es un poco ajustado, pero estamos seguros de que podrás hacer un gran viaje.`;
                 resultadosDiv.appendChild(resultadoPresupuestoAjustado);
             }
         } else {
@@ -265,20 +264,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-
-
 // Almacenamiento de datos en el formulario
 const formulario = document.querySelector('#simulador');
 const btnEnviar = document.querySelector('#enviar');
 
-btnEnviar.addEventListener('click', function() {
-    // Obtener los valores de los campos de entrada
+btnEnviar.addEventListener('click', function () {
     const campos = formulario.querySelectorAll('input');
     const valores = {};
-    
-    campos.forEach(function(campo) {
-    valores[campo.name] = campo.value;
+
+    campos.forEach(function (campo) {
+        valores[campo.name] = campo.value;
     });
 
     const selectMedioTransporte = document.querySelector('#medioTransporte');
@@ -290,35 +285,39 @@ btnEnviar.addEventListener('click', function() {
     const selectTipoComidas = document.querySelector('#tipoComidas');
     valores[selectTipoComidas.name] = selectTipoComidas.options[selectTipoComidas.selectedIndex].value;
 
-    // Almacenar los valores en local storage
     localStorage.setItem('datosFormulario', JSON.stringify(valores));
 
-    // Restablecer los valores de los campos de entrada (opcional)
-    campos.forEach(function(campo) {
-    campo.value = '';
+    campos.forEach(function (campo) {
+        campo.value = '';
     });
 
-    alert('Los datos se han almacenado en local storage.');
-
-    // Mostrar los datos almacenados
     mostrarDatosAlmacenados();
 });
 
-// Función para mostrar los datos almacenados en los campos de entrada
 function mostrarDatosAlmacenados() {
     const datosAlmacenados = localStorage.getItem('datosFormulario');
 
     if (datosAlmacenados) {
-    const valores = JSON.parse(datosAlmacenados);
+        const valores = JSON.parse(datosAlmacenados);
 
-    Object.keys(valores).forEach(function(nombreCampo) {
-        const campo = formulario.querySelector(`[name="${nombreCampo}"]`);
-        if (campo) {
-        campo.value = valores[nombreCampo];
-        }
-    });
+        Object.keys(valores).forEach(function (nombreCampo) {
+            const campo = formulario.querySelector(`[name="${nombreCampo}"]`);
+            if (campo) {
+                campo.value = valores[nombreCampo];
+            }
+        });
     }
 }
-
-// Mostrar los datos almacenados al cargar la página
 mostrarDatosAlmacenados();
+
+// Borrar los datos almacenados en el local storage y limpiar los campos del formulario.
+const btnBorrar = document.getElementById('borrarDatosAlmacenados');
+btnBorrar.addEventListener('click', function () {
+    localStorage.clear();
+
+    const campos = formulario.querySelectorAll('input');
+    campos.forEach(function (campo) {
+        campo.value = '';
+    });
+    location.reload();
+});
