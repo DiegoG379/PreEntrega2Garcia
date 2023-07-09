@@ -1,5 +1,17 @@
 //Simulador de gastos - Inicio
 
+function validarCampo(input) {
+    let valor = parseInt(input.value);
+
+    if (isNaN(valor) || valor < 0) {
+        input.value = "";
+    }
+}
+
+
+
+
+
 // Conversor de divisas
 let conversorDivisa = [0.025, 40];
 
@@ -88,42 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     let medioTransporteSelect = document.getElementById("medioTransporte");
     let pasajesInput = document.getElementById("pasajes");
@@ -182,8 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto);
         }
 
-        console.log(gastoTransportePersona)
-
         // Cálculo de costos
         let costoComidaTotal = gastoComidaDia * diasViaje;
         let costoTotalViaje = (gastoTransportePersona + costoComidaTotal + gastoExtraPersona) * cantidadPersonas + gastoAlojamiento;
@@ -194,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
         resultadosDiv.innerHTML = "";
 
         const resultados = [
-            { texto: `Presupuesto: ${presupuesto}.` },
+            { texto: `Presupuesto: $${presupuesto}.` },
             { texto: `Duración del viaje: ${diasViaje} día/días.` },
             { texto: `Cantidad de personas: ${cantidadPersonas} viajero/viajeros.` },
             { texto: `Gasto en transporte por persona: $${gastoTransportePersona}` },
@@ -205,29 +179,15 @@ document.addEventListener('DOMContentLoaded', function () {
             { texto: `El costo total de tu viaje es: $${costoTotalViaje}` }
         ];
 
+        let h3Elemento = document.createElement("h3");
+        h3Elemento.textContent = "Detalles de tu última simulación de viaje";
+        resultadosDiv.appendChild(h3Elemento);
+
         resultados.forEach((resultado) => {
             let resultadoElemento = document.createElement("p");
             resultadoElemento.textContent = resultado.texto;
             resultadosDiv.appendChild(resultadoElemento);
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Objeto de valores de referencia y función de porcentaje
         let valoresReferencia = {
