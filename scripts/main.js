@@ -10,7 +10,28 @@ function validarCampo(input) {
 }
 
 // Conversor de divisas
-let conversorDivisa = [0.025, 40];
+let conversorDivisa = {
+    uyu: {
+        usd: 0.025,
+        eur: 0.024,
+        ars: 6.85
+    },
+    usd: {
+        uyu: 40,
+        eur: 0.96,
+        ars: 262.55
+    },
+    eur: {
+        uyu: 42.16,
+        usd: 1.04,
+        ars: 288.66
+    },
+    ars: {
+        uyu: 0.15,
+        usd: 0.0038,
+        eur: 0.0035
+    }
+};
 
 function convertirDivisa() {
     let monto = parseFloat(document.getElementById('monto').value);
@@ -18,14 +39,12 @@ function convertirDivisa() {
     let monedaA = document.getElementById('monedaA').value;
     let resultado;
 
-    if (monedaDe === 'uyu' && monedaA === 'usd') {
-        resultado = monto * conversorDivisa[0];
-        document.getElementById('resultado').innerHTML = `UYU${monto} = USD${resultado}`;
-    } else if (monedaDe === 'usd' && monedaA === 'uyu') {
-        resultado = monto * conversorDivisa[1];
-        document.getElementById('resultado').innerHTML = `USD${monto} = UYU${resultado}`;
+    if (conversorDivisa[monedaDe] && conversorDivisa[monedaDe][monedaA]) {
+      resultado = monto * conversorDivisa[monedaDe][monedaA];
+        document.getElementById('resultado').innerHTML = `${monedaDe.toUpperCase()}${monto} = ${monedaA.toUpperCase()}${resultado}`;
     } else {
         resultado = 'No se puede realizar la conversión';
+        document.getElementById('resultado').innerHTML = resultado;
     }
 }
 
