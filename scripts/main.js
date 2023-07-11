@@ -202,6 +202,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let presupuestoRestante = presupuesto - costoTotalViaje;
 
         // Generar resultados en el archivo HTML 
+
+        let SeleccionTipoTransporte = document.getElementById("medioTransporte").value;
+        let SeleccionTipoAlojamiento = document.getElementById("tipoAlojamiento").value;
+        let SeleccionTipoComidas = document.getElementById("tipoComidas").value;
+
+
         let resultadosDiv = document.getElementById("resultados");
         resultadosDiv.innerHTML = "";
 
@@ -209,9 +215,9 @@ document.addEventListener('DOMContentLoaded', function () {
             { texto: `Presupuesto: $${presupuesto}.` },
             { texto: `Duración del viaje: ${diasViaje} día/días.` },
             { texto: `Cantidad de personas: ${cantidadPersonas} viajero/viajeros.` },
-            { texto: `Gasto en transporte por persona: $${gastoTransportePersona}` },
-            { texto: `Gasto en alojamiento por persona: $${gastoAlojamiento/cantidadPersonas}` },
-            { texto: `Gasto en comidas durante toda la estadía por persona: $${costoComidaTotal}` },
+            { texto: `Has seleccionado ${SeleccionTipoTransporte} como medio de transporte. El gasto en transporte por persona es de $${gastoTransportePersona}` },
+            { texto: `Se ha seleccionado ${SeleccionTipoAlojamiento} como tipo de alojamiento para tu estadía. El gasto por persona en alojamiento es de $${gastoAlojamiento/cantidadPersonas}.` },
+            { texto: `El régimen de comidas seleccionado es ${SeleccionTipoComidas}. El gasto en comidas durante toda la estadía por persona es de $${costoComidaTotal}.` },
             { texto: `Gastos extras por persona: $${gastoExtraPersona}` },
             { texto: `El costo de tu viaje por persona es: $${costoTotalViaje/cantidadPersonas}` },
             { texto: `El costo total de tu viaje es: $${costoTotalViaje}` }
