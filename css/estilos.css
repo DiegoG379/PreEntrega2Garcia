@@ -274,8 +274,8 @@ body {
 .botonTop {
   font-size: 55px;
   position: fixed;
-  right: 15px;
-  bottom: 10px;
+  right: -10px;
+  bottom: 50px;
 }
 
 @media screen and (max-width: 450px) {
@@ -351,6 +351,10 @@ body {
   .derechos {
     font-size: 13px;
   }
+  .botonTop {
+    right: 2px;
+    bottom: 55px;
+  }
 }
 @media screen and (min-width: 450px) and (max-width: 600px) {
   .navbar {
@@ -420,5 +424,19 @@ body {
   }
   .derechos {
     font-size: 16px;
+  }
+  .botonTop {
+    right: -15px;
+    bottom: 45px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .nav-link {
+    padding: 5px 0px 5px 15px;
+  }
+  .botonTop {
+    right: -15px;
+    bottom: 55px;
+    font-size: 45px;
   }
 }/*# sourceMappingURL=estilos.css.map */

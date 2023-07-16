@@ -317,8 +317,8 @@ $color3: #F58742;
 .botonTop{
   font-size: 55px;
   position: fixed;
-  right: 15px;
-  bottom: 10px;
+  right: -10px;
+  bottom: 50px;
 }
 
 
@@ -415,6 +415,11 @@ $color3: #F58742;
   .derechos {
     font-size: 13px;
   }
+
+  .botonTop{
+    right: 2px;
+    bottom: 55px;
+  }
   
 }
 
@@ -503,5 +508,23 @@ $color3: #F58742;
   .derechos {
     font-size: 16px;
   }
+
+  .botonTop{
+    right: -15px;
+    bottom: 45px;
+  }
   
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .nav-link {
+    padding: 5px 0px 5px 15px;
+  }
+
+  .botonTop{
+    right: -15px;
+    bottom: 55px;
+    font-size: 45px;
+  }
+
 }
