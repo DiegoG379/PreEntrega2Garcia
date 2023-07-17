@@ -15,7 +15,7 @@
 body {
   background-repeat: repeat;
   background-size: 20% auto;
-  background-image: url(../media/wa1.jpg);
+  background-image: url(../media/wallpaper.webp);
 }
 
 .navbar {
@@ -81,26 +81,32 @@ body {
   padding: 20px 25px 0px 25px;
 }
 
-.imagenes {
+.carrusel {
+  width: 100%;
+  overflow: hidden;
   border: solid #F58742 2px;
   margin: 35px auto 0px auto;
+}
+
+.imagenes {
+  animation: scroll 37s linear infinite;
   display: flex;
-  width: 90%;
-  height: 350px;
 }
 .imagenes img {
   border: solid #F58742 2px;
-  width: 0px;
-  flex-grow: 1;
-  -o-object-fit: cover;
-     object-fit: cover;
-  transition: 1.8s ease;
-}
-.imagenes img:hover {
   width: 25%;
-  filter: contrast(150%);
+  height: auto;
+  margin: 0;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-250%);
+  }
+}
 .simuladorYformulario {
   color: black;
   height: auto;
@@ -312,7 +318,14 @@ body {
     font-size: 16px;
     padding: 10px 15px 0px 15px;
   }
+  .carrusel {
+    margin: 15px auto 0px auto;
+  }
+  .imagenes img {
+    width: 65%;
+  }
   .simuladorYformulario {
+    margin: 15px auto 0px auto;
     width: 90%;
     padding: 15px;
   }
@@ -386,7 +399,14 @@ body {
     font-size: 16px;
     padding: 10px 15px 0px 15px;
   }
+  .carrusel {
+    margin: 20px auto 0px auto;
+  }
+  .imagenes img {
+    width: 55%;
+  }
   .simuladorYformulario {
+    margin: 20px auto 0px auto;
     width: 90%;
     padding: 15px;
   }
@@ -438,5 +458,14 @@ body {
     right: -15px;
     bottom: 55px;
     font-size: 45px;
+  }
+  .carrusel {
+    margin: 25px auto 0px auto;
+  }
+  .imagenes img {
+    width: 37%;
+  }
+  .simuladorYformulario {
+    margin: 25px auto 0px auto;
   }
 }/*# sourceMappingURL=estilos.css.map */
