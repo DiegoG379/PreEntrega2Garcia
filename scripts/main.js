@@ -1,3 +1,12 @@
+// Se muestra logo de carga
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        document.body.style.backgroundImage = 'url(../media/wallpaper.webp)';
+    }, 3000);
+});
+
 //Simulador de gastos - Inicio
 
 // Verificar que sean solamente números y además positivos en los campos input
@@ -39,11 +48,14 @@ function convertirDivisa() {
     let monedaA = document.getElementById('monedaA').value;
     let resultado;
 
-    if (conversorDivisa[monedaDe] && conversorDivisa[monedaDe][monedaA]) {
-      resultado = monto * conversorDivisa[monedaDe][monedaA];
+    if (isNaN(monto)) {
+        resultado = 'Ingrese un monto válido a convertir';
+        document.getElementById('resultado').innerHTML = resultado;
+    } else if (conversorDivisa[monedaDe] && conversorDivisa[monedaDe][monedaA]) {
+        resultado = monto * conversorDivisa[monedaDe][monedaA];
         document.getElementById('resultado').innerHTML = `${monedaDe.toUpperCase()}${monto} = ${monedaA.toUpperCase()}${resultado}`;
     } else {
-        resultado = 'No se puede realizar la conversión';
+        resultado = 'No se pueden convertir las mismas divisas.';
         document.getElementById('resultado').innerHTML = resultado;
     }
 }

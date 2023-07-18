@@ -16,326 +16,346 @@
 </head>
 
 <body>
-    <!-- Barra de navegación - Inicio -->
-    <nav class="navbar navbar-expand-xl navbar-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#simulador">Simulador</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <img class="logo" src="./media/logo.png" alt="logo" />
-    <!-- Barra de navegación - Final -->
-    <!-- Inicio - Inicio -->
-    <section id="inicio">
-        <article class="introduccion">
-            <h1>PRE$UPUE$TO VIAJERO</h1>
-            <p>
-                ¿Estás planeando tu próximo viaje y quieres tener una idea clara de
-                cuánto podrías gastar? Nuestro simulador te ayudará a estimar los
-                gastos relacionados con tu aventura, permitiéndote planificar y
-                presupuestar de manera efectiva.
-            </p>
-            <br />
-            <p>
-                Con nuestro sencillo formulario, podrás ingresar los detalles clave de
-                tu viaje, como el destino, la duración, el número de personas y tu
-                presupuesto. Luego, nuestro simulador utilizará algoritmos
-                inteligentes para calcular una estimación de los gastos en diferentes
-                categorías.
-            </p>
-            <br />
-            <p>
-                Descubre cuánto podrías gastar en transporte, alojamiento, comidas,
-                actividades y otros aspectos relevantes. Obtén un desglose detallado
-                de los costos y ajusta los parámetros según tus preferencias
-                personales. Nuestro objetivo es brindarte una visión clara de los
-                gastos esperados, ayudándote a tomar decisiones informadas y evitar
-                sorpresas financieras durante tu viaje.
-            </p>
-            <br />
-            <p>
-                ¡Planifica, presupuesta y disfruta al máximo de tu viaje con nuestro
-                Simulador de Gastos para Viajes! Bienvenido/a a una nueva forma de
-                planificar tus aventuras.
-            </p>
-        </article>
-    </section>
-    <!-- Inicio - Final -->
-    <!-- Carrusel - Inicio -->
-    <section class="carrusel">
-        <div class="imagenes">
-            <img src="./media/photos/sliderI.webp" alt="cataratasBrasil" />
-            <img src="./media/photos/sliderII.webp" alt="volcanCongo" />
-            <img src="./media/photos/sliderIII.webp" alt="faroArgentina" />
-            <img src="./media/photos/sliderIV.webp" alt="acueductoEspana" />
-            <img src="./media/photos/sliderV.webp" alt="eiffelFrancia" />
-            <img src="./media/photos/sliderVI.webp" alt="piramideEgipto" />
-            <img src="./media/photos/sliderVII.webp" alt="edificioEmiratos" />
-            <img src="./media/photos/sliderVIII.webp" alt="globosTurquia" />
-            <img src="./media/photos/sliderIX.webp" alt="botesTanzania" />
-            <img src="./media/photos/sliderX.webp" alt="raftingUganda" />
-
-            <img src="./media/photos/sliderI.webp" alt="cataratasBrasil" />
-            <img src="./media/photos/sliderII.webp" alt="volcanCongo" />
-            <img src="./media/photos/sliderIII.webp" alt="faroArgentina" />
-            <img src="./media/photos/sliderIV.webp" alt="acueductoEspana" />
-            <img src="./media/photos/sliderV.webp" alt="eiffelFrancia" />
-            <img src="./media/photos/sliderVI.webp" alt="piramideEgipto" />
-            <img src="./media/photos/sliderVII.webp" alt="edificioEmiratos" />
-            <img src="./media/photos/sliderVIII.webp" alt="globosTurquia" />
-            <img src="./media/photos/sliderIX.webp" alt="botesTanzania" />
-            <img src="./media/photos/sliderX.webp" alt="raftingUganda" />
-        </div>
-    </section>
-    <!-- Carrusel - Final -->
-
-    <!-- Simulador - Inicial -->
-    <section id="simulador">
-        <form class="simuladorYformulario">
-            <article>
-                <h2>$imulador de Gasto$</h2>
-                <div class="conversorContenedor row">
-                    <!-- Sección Conversor -->
-                    <h3>Conversor de divisas</h3>
-                    <div class="col-lg-6 my-auto col-md-12">
-                        <p>
-                            Para garantizar la consistencia en los resultados del simulador
-                            es necesario utilizar la misma moneda en todas las entradas y
-                            cálculos. Con ese fin, te proporcionamos una opción de selección
-                            de moneda para facilitar su uso en el simulador.
-                        </p>
-                    </div>
-                    <div class="conversor col-lg-5 col-md-12 row">
-                        <label for="monto">Monto:</label>
-                        <input type="number" id="monto" oninput="validarCampo(this)" min="0"
-                            placeholder="Ingrese el monto" />
-                        <label for="monedaDe">De:</label>
-                        <select id="monedaDe">
-                            <option value="uyu">UYU</option>
-                            <option value="usd">USD</option>
-                            <option value="eur">EUR</option>
-                            <option value="ars">ARS</option>
-                        </select>
-                        <label for="monedaA">A:</label>
-                        <select id="monedaA">
-                            <option value="usd">USD</option>
-                            <option value="uyu">UYU</option>
-                            <option value="eur">EUR</option>
-                            <option value="ars">ARS</option>
-                        </select>
-                        <div class="text-center">
-                            <button class="boton" type="button" onclick="convertirDivisa()">
-                                Convertir
-                            </button>
-                        </div>
-                        <div id="resultado" class="col-lg-12 my-auto col-md-12 resultado"></div>
-                    </div>
-                </div>
-            </article>
-            <!-- Sección Primeros datos -->
-            <div class="seccionesSimulador row">
-                <h3 class="col-lg-12">Primeros datos de tu viaje</h3>
-                <p class="col-lg-12">
-                    Antes de comenzar, necesitamos algunos datos clave. Por favor,
-                    ayúdanos proporcionando información relevante de tu viaje. Estos
-                    datos nos permitirán brindarte recomendaciones y cálculos precisos.
-                </p>
-                <div class="col-lg-12 d-flex flex-wrap">
-                    <input id="presupuesto" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" name="presupuesto"
-                        oninput="validarCampo(this)" min="0" placeholder="Presupuesto" />
-                    <input id="duracion" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
-                        oninput="validarCampo(this)" name="duracion" placeholder="Duración en días" />
-                    <input id="personas" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
-                        oninput="validarCampo(this)" name="personas" placeholder="Cantidad de personas" />
+    <!-- Logo de carga - Inicio -->
+    <div class="logoCarga" id="spinner">
+        <img class="logoEstatico" src="./media/logo.png" alt="Logo de carga">
+        <img class="avion" src="./media/photos/avion.png" alt="Avión giratorio">
+        <img class="barco" src="./media/photos/barco.png" alt="Barco giratorio">
+        <img class="metro" src="./media/photos/metro.png" alt="Metro giratorio">
+    </div>
+    <!-- Logo de carga - Final -->
+    <!-- Contenedor del contenido principal del sitio - Inicio -->
+    <div id="content" style="display: none;">
+        <!-- Barra de navegación - Inicio -->
+        <nav class="navbar navbar-expand-xl navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#simulador">Simulador</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- Sección Transporte -->
-            <div class="seccionesSimulador row">
-                <h3 class="col-12">Transporte</h3>
-                <p class="col-12">
-                    Antes de continuar, elige el medio de transporte que utilizarás en
-                    tu viaje y asegúrate de ingresar el monto total de los pasajes de
-                    ida y de vuelta por cada persona.
-                </p>
-                <p class="col-12 aclaraciones">
-                    En caso de seleccionar la opción de <strong>automóvil</strong>, se
-                    deben ingresar los siguientes datos:
-                </p>
-                <p class="col-12 aclaraciones">
-                    <strong>-Consumo:</strong> El consumo de combustible del automóvil. En caso de no conocer
-                    este dato, el simulador utilizará un valor predeterminado de 15
-                    km/litro.
-                </p>
-                <p class="col-12 aclaraciones">
-                    <strong>-Distancia:</strong> Indica el total de Kilómetros a recorrer durante el viaje, tanto de ida
-                    como
-                    de vuelta.
-                </p>
-                <p class="col-12 aclaraciones">
-                    <strong>-Precio:</strong> Ingresa el precio por Litro del combustible.
-                </p>
-                <div class="col-lg-12 d-flex flex-wrap">
-                    <select id="medioTransporte" name="medioTransporte"
-                        class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
-                        <option value="avión">Avión</option>
-                        <option value="barco">Barco</option>
-                        <option value="tren">Tren</option>
-                        <option value="automovil">Automóvil</option>
-                        <option value="otros">Otros</option>
-                    </select>
-                    <input type="number" id="pasajes" class="col-lg-4 col-md-9 col-sm-10 col-12" name="pasajes"
-                        placeholder="Gasto total en pasajes" oninput="validarCampo(this)" min="0" />
-                    <div id="camposAdicionales" style="display: none">
-                        <input type="number" name="consumo" id="consumoCombustible" placeholder="Consumo"
-                            oninput="validarCampo(this)" min="0" />
-                        <input type="number" name="distancia" id="distanciaKm" placeholder="Distancia"
-                            oninput="validarCampo(this)" min="0" />
-                        <input type="number" name="precio" id="precioCombustible" placeholder="Precio"
-                            oninput="validarCampo(this)" min="0" />
-                    </div>
-                </div>
-            </div>
-            <!-- Sección Alojamiento -->
-            <div class="seccionesSimulador row">
-                <h3 class="col-lg-12">Alojamiento</h3>
-                <p class="col-lg-12">Por favor, indícanos el tipo de alojamiento que tienes previsto para tu estadía,
-                    así como la cantidad total a pagar durante los días seleccionados. Esta información nos ayudará a
-                    ofrecerte recomendaciones más precisas y ajustadas a tus necesidades.
-                </p>
-                <div class="col-lg-12 d-flex flex-wrap">
-                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoAlojamiento"
-                        name="tipoAlojamiento">
-                        <option value="hotel">Hotel</option>
-                        <option value="apartamento">Apartamento</option>
-                        <option value="hostal">Hostal</option>
-                        <option value="camping">Camping</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    <input type="number" id="alojamiento" class="col-lg-4 col-md-9 col-sm-10 col-12" type="text"
-                        name="alojamiento" placeholder="Gasto total de alojamiento" oninput="validarCampo(this)"
-                        min="0" />
-                </div>
-            </div>
-            <!-- Sección Comidas -->
-            <div class="seccionesSimulador row">
-                <h3 class="col-12">Comidas</h3>
-                <p class="col-12">Basado en la investigación realizada para tu viaje, escribe el monto previsto que
-                    tienes pensado gastar en comida por día. Además selecciona el régimen de comidas brindado por tu
-                    alojamiento:</p>
-                <p class="col-12 aclaraciones">
-                    <strong>-All Inclusive:</strong> Incluye las 4 comidas del día.
-                </p>
-                <p class="col-12 aclaraciones">
-                    <strong>-Media Pensión:</strong> Incluye desayuno y almuerzo o cena.
-                </p>
-                <p class="col-12 aclaraciones">
-                    <strong>-Solo Desayuno:</strong> Únicamente se brinda el desayuno.
-                </p>
-                <div class="col-lg-12 d-flex flex-wrap">
-                    <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoComidas" name="tipoComidas">
-                        <option value="sin comidas">Ninguna</option>
-                        <option value="all-inclusive">All-inclusive</option>
-                        <option value="media pensión">Media pensión</option>
-                        <option value="solo desayuno">Desayuno</option>
-                    </select>
-                    <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number" name="comidas"
-                        placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0" />
-                </div>
-            </div>
-            <!-- Sección Otras actividades -->
-            <div class="seccionesSimulador row">
-                <h3 class="col-lg-12">Otras actividades</h3>
-                <p class="col-lg-12">Por favor, indica las actividades que tienes planificadas durante tu viaje, junto
-                    con su respectivo precio por persona. De esta manera, podremos calcular el presupuesto total de las
-                    actividades.</p>
-                <input id="actividadInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="text"
-                    placeholder="Actividad" />
-                <input id="precioInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="number" placeholder="Precio"
-                    oninput="validarCampo(this)" min="0" />
-                <button id="agregar" class="boton col-lg-4 col-md-12 col-sm-10 col-10" type="button">Agregar</button>
-                <ul class="lista" id="actividadesLista"></ul>
-            </div>
-
-            <!-- Sección Botón -->
-            <div class="seccionesSimulador text-center">
-                <button id="borrarDatosAlmacenados" class="boton" type="button">Borrar</button>
-                <button id="enviar" class="boton" type="button">Simular</button>
-            </div>
-
-            <div class="seccionesResultados" id="resultados"></div>
-
-        </form>
-    </section>
-    <!-- Simulador - Final -->
-
-    <!-- Formmulario - Inicio -->
-    <section id="contacto">
-        <form class="simuladorYformulario">
-            <article class="row">
-                <h2 class="col-lg-12">¡Nos encantaría escuchar tu opinión!</h2>
-                <p class="col-lg-12">
-                    Agradecemos tu participación en nuestro sitio. Tu opinión es muy
-                    valiosa para nosotros, ya que nos ayuda a mejorar y brindarte la
-                    mejor experiencia posible. Valoramos tus comentarios y sugerencias,
-                    y estamos comprometidos a utilizarlos para seguir perfeccionando
-                    nuestros servicios.
+        </nav>
+        <img class="logo" src="./media/logo.png" alt="logo" />
+        <!-- Barra de navegación - Final -->
+        <!-- Inicio - Inicio -->
+        <section id="inicio">
+            <article class="introduccion">
+                <h1>PRE$UPUE$TO VIAJERO</h1>
+                <p>
+                    ¿Estás planeando tu próximo viaje y quieres tener una idea clara de
+                    cuánto podrías gastar? Nuestro simulador te ayudará a estimar los
+                    gastos relacionados con tu aventura, permitiéndote planificar y
+                    presupuestar de manera efectiva.
                 </p>
                 <br />
-                <p class="col-lg-12">
-                    Queremos asegurarnos de que tu experiencia con nuestro simulador de
-                    gastos para viajes sea excepcional. Estamos aquí para escucharte y
-                    trabajar en conjunto para lograrlo. Gracias por ser parte de nuestro
-                    viaje y esperamos con entusiasmo recibir tus comentarios para seguir
-                    mejorando.
+                <p>
+                    Con nuestro sencillo formulario, podrás ingresar los detalles clave de
+                    tu viaje, como el destino, la duración, el número de personas y tu
+                    presupuesto. Luego, nuestro simulador utilizará algoritmos
+                    inteligentes para calcular una estimación de los gastos en diferentes
+                    categorías.
+                </p>
+                <br />
+                <p>
+                    Descubre cuánto podrías gastar en transporte, alojamiento, comidas,
+                    actividades y otros aspectos relevantes. Obtén un desglose detallado
+                    de los costos y ajusta los parámetros según tus preferencias
+                    personales. Nuestro objetivo es brindarte una visión clara de los
+                    gastos esperados, ayudándote a tomar decisiones informadas y evitar
+                    sorpresas financieras durante tu viaje.
+                </p>
+                <br />
+                <p>
+                    ¡Planifica, presupuesta y disfruta al máximo de tu viaje con nuestro
+                    Simulador de Gastos para Viajes! Bienvenido/a a una nueva forma de
+                    planificar tus aventuras.
                 </p>
             </article>
+        </section>
+        <!-- Inicio - Final -->
+        <!-- Carrusel - Inicio -->
+        <section class="carrusel">
+            <div class="imagenes">
+                <img src="./media/photos/sliderI.webp" alt="cataratasBrasil" />
+                <img src="./media/photos/sliderII.webp" alt="volcanCongo" />
+                <img src="./media/photos/sliderIII.webp" alt="faroArgentina" />
+                <img src="./media/photos/sliderIV.webp" alt="acueductoEspana" />
+                <img src="./media/photos/sliderV.webp" alt="eiffelFrancia" />
+                <img src="./media/photos/sliderVI.webp" alt="piramideEgipto" />
+                <img src="./media/photos/sliderVII.webp" alt="edificioEmiratos" />
+                <img src="./media/photos/sliderVIII.webp" alt="globosTurquia" />
+                <img src="./media/photos/sliderIX.webp" alt="botesTanzania" />
+                <img src="./media/photos/sliderX.webp" alt="raftingUganda" />
 
-            <div class="seccionesSimulador">
-                <div class="seccionFormulario row ">
-                    <input class="col-lg-6 col-md-10" type="text" name="nombre" placeholder="Nombre y Apellido" />
-                </div>
-                <div class="seccionFormulario row">
-                    <input class="col-lg-6 col-md-10" type="email" name="correo" placeholder="Correo electrónico" />
-                </div>
-                <div class="seccionFormulario row">
-                    <textarea class="col-lg-6 col-md-10 areaTexto" name="comentario"
-                        placeholder="Escriba su mensaje"></textarea>
-                </div>
-                <div class="row">
-                    <button class="boton col-lg-3 boton" type="submit">Enviar</button>
-                </div>
+                <img src="./media/photos/sliderI.webp" alt="cataratasBrasil" />
+                <img src="./media/photos/sliderII.webp" alt="volcanCongo" />
+                <img src="./media/photos/sliderIII.webp" alt="faroArgentina" />
+                <img src="./media/photos/sliderIV.webp" alt="acueductoEspana" />
+                <img src="./media/photos/sliderV.webp" alt="eiffelFrancia" />
+                <img src="./media/photos/sliderVI.webp" alt="piramideEgipto" />
+                <img src="./media/photos/sliderVII.webp" alt="edificioEmiratos" />
+                <img src="./media/photos/sliderVIII.webp" alt="globosTurquia" />
+                <img src="./media/photos/sliderIX.webp" alt="botesTanzania" />
+                <img src="./media/photos/sliderX.webp" alt="raftingUganda" />
             </div>
-        </form>
-    </section>
-    <!-- Formmulario - Final -->
-    <!-- Footer - Inicio -->
+        </section>
+        <!-- Carrusel - Final -->
 
-    <a class="redes botonTop" href="#"><i class="fa-solid fa-circle-chevron-up"></i></a>
+        <!-- Simulador - Inicial -->
+        <section id="simulador">
+            <form class="simuladorYformulario">
+                <article>
+                    <h2>$imulador de Gasto$</h2>
+                    <div class="conversorContenedor row">
+                        <!-- Sección Conversor -->
+                        <h3>Conversor de divisas</h3>
+                        <div class="col-lg-6 my-auto col-md-12">
+                            <p>
+                                Para garantizar la consistencia en los resultados del simulador
+                                es necesario utilizar la misma moneda en todas las entradas y
+                                cálculos. Con ese fin, te proporcionamos una opción de selección
+                                de moneda para facilitar su uso en el simulador.
+                            </p>
+                        </div>
+                        <div class="conversor col-lg-5 col-md-12 row">
+                            <label for="monto">Monto:</label>
+                            <input type="number" id="monto" oninput="validarCampo(this)" min="0"
+                                placeholder="Ingrese el monto" />
+                            <label for="monedaDe">De:</label>
+                            <select id="monedaDe">
+                                <option value="uyu">UYU</option>
+                                <option value="usd">USD</option>
+                                <option value="eur">EUR</option>
+                                <option value="ars">ARS</option>
+                            </select>
+                            <label for="monedaA">A:</label>
+                            <select id="monedaA">
+                                <option value="usd">USD</option>
+                                <option value="uyu">UYU</option>
+                                <option value="eur">EUR</option>
+                                <option value="ars">ARS</option>
+                            </select>
+                            <div class="text-center">
+                                <button class="boton" type="button" onclick="convertirDivisa()">
+                                    Convertir
+                                </button>
+                            </div>
+                            <div id="resultado" class="col-lg-12 my-auto col-md-12 resultado"></div>
+                        </div>
+                    </div>
+                </article>
+                <!-- Sección Primeros datos -->
+                <div class="seccionesSimulador row">
+                    <h3 class="col-lg-12">Primeros datos de tu viaje</h3>
+                    <p class="col-lg-12">
+                        Antes de comenzar, necesitamos algunos datos clave. Por favor,
+                        ayúdanos proporcionando información relevante de tu viaje. Estos
+                        datos nos permitirán brindarte recomendaciones y cálculos precisos.
+                    </p>
+                    <div class="col-lg-12 d-flex flex-wrap">
+                        <input id="presupuesto" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number"
+                            name="presupuesto" oninput="validarCampo(this)" min="0" placeholder="Presupuesto" />
+                        <input id="duracion" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
+                            oninput="validarCampo(this)" name="duracion" placeholder="Duración en días" />
+                        <input id="personas" class="col-lg-3 col-md-8 col-sm-12 col-12" type="number" min="0"
+                            oninput="validarCampo(this)" name="personas" placeholder="Cantidad de personas" />
+                    </div>
+                </div>
+                <!-- Sección Transporte -->
+                <div class="seccionesSimulador row">
+                    <h3 class="col-12">Transporte</h3>
+                    <p class="col-12">
+                        Antes de continuar, elige el medio de transporte que utilizarás en
+                        tu viaje y asegúrate de ingresar el monto total de los pasajes de
+                        ida y de vuelta por cada persona.
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        En caso de seleccionar la opción de <strong>automóvil</strong>, se
+                        deben ingresar los siguientes datos:
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-Consumo:</strong> El consumo de combustible del automóvil. En caso de no conocer
+                        este dato, el simulador utilizará un valor predeterminado de 15
+                        km/litro.
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-Distancia:</strong> Indica el total de Kilómetros a recorrer durante el viaje, tanto de
+                        ida
+                        como
+                        de vuelta.
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-Precio:</strong> Ingresa el precio por Litro del combustible.
+                    </p>
+                    <div class="col-lg-12 d-flex flex-wrap">
+                        <select id="medioTransporte" name="medioTransporte"
+                            class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto">
+                            <option value="avión">Avión</option>
+                            <option value="barco">Barco</option>
+                            <option value="tren">Tren</option>
+                            <option value="automovil">Automóvil</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                        <input type="number" id="pasajes" class="col-lg-4 col-md-9 col-sm-10 col-12" name="pasajes"
+                            placeholder="Gasto total en pasajes" oninput="validarCampo(this)" min="0" />
+                        <div id="camposAdicionales" style="display: none">
+                            <input type="number" name="consumo" id="consumoCombustible" placeholder="Consumo"
+                                oninput="validarCampo(this)" min="0" />
+                            <input type="number" name="distancia" id="distanciaKm" placeholder="Distancia"
+                                oninput="validarCampo(this)" min="0" />
+                            <input type="number" name="precio" id="precioCombustible" placeholder="Precio"
+                                oninput="validarCampo(this)" min="0" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Sección Alojamiento -->
+                <div class="seccionesSimulador row">
+                    <h3 class="col-lg-12">Alojamiento</h3>
+                    <p class="col-lg-12">Por favor, indícanos el tipo de alojamiento que tienes previsto para tu
+                        estadía,
+                        así como la cantidad total a pagar durante los días seleccionados. Esta información nos ayudará
+                        a
+                        ofrecerte recomendaciones más precisas y ajustadas a tus necesidades.
+                    </p>
+                    <div class="col-lg-12 d-flex flex-wrap">
+                        <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoAlojamiento"
+                            name="tipoAlojamiento">
+                            <option value="hotel">Hotel</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="hostal">Hostal</option>
+                            <option value="camping">Camping</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <input type="number" id="alojamiento" class="col-lg-4 col-md-9 col-sm-10 col-12" type="text"
+                            name="alojamiento" placeholder="Gasto total de alojamiento" oninput="validarCampo(this)"
+                            min="0" />
+                    </div>
+                </div>
+                <!-- Sección Comidas -->
+                <div class="seccionesSimulador row">
+                    <h3 class="col-12">Comidas</h3>
+                    <p class="col-12">Basado en la investigación realizada para tu viaje, escribe el monto previsto que
+                        tienes pensado gastar en comida por día. Además selecciona el régimen de comidas brindado por tu
+                        alojamiento:</p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-All Inclusive:</strong> Incluye las 4 comidas del día.
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-Media Pensión:</strong> Incluye desayuno y almuerzo o cena.
+                    </p>
+                    <p class="col-12 aclaraciones">
+                        <strong>-Solo Desayuno:</strong> Únicamente se brinda el desayuno.
+                    </p>
+                    <div class="col-lg-12 d-flex flex-wrap">
+                        <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoComidas" name="tipoComidas">
+                            <option value="sin comidas">Ninguna</option>
+                            <option value="all-inclusive">All-inclusive</option>
+                            <option value="media pensión">Media pensión</option>
+                            <option value="solo desayuno">Desayuno</option>
+                        </select>
+                        <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number" name="comidas"
+                            placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0" />
+                    </div>
+                </div>
+                <!-- Sección Otras actividades -->
+                <div class="seccionesSimulador row">
+                    <h3 class="col-lg-12">Otras actividades</h3>
+                    <p class="col-lg-12">Por favor, indica las actividades que tienes planificadas durante tu viaje,
+                        junto
+                        con su respectivo precio por persona. De esta manera, podremos calcular el presupuesto total de
+                        las
+                        actividades.</p>
+                    <input id="actividadInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="text"
+                        placeholder="Actividad" />
+                    <input id="precioInput" class="col-lg-4 col-md-11 col-sm-10 col-10" type="number"
+                        placeholder="Precio" oninput="validarCampo(this)" min="0" />
+                    <button id="agregar" class="boton col-lg-4 col-md-12 col-sm-10 col-10"
+                        type="button">Agregar</button>
+                    <ul class="lista" id="actividadesLista"></ul>
+                </div>
 
-    <footer class="pieDePagina">
-        <div>
-            <a class="redes" href="https://github.com/DiegoG379" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a class="redes" href=""><i class="fa-brands fa-linkedin"></i></a>
-        </div>
-        <p class="derechos">
-            Diego García © 2023. Todos los derechos reservados.
-        </p>
-    </footer>
-    <!-- Footer - Final -->
+                <!-- Sección Botón -->
+                <div class="seccionesSimulador text-center">
+                    <button id="borrarDatosAlmacenados" class="boton" type="button">Borrar</button>
+                    <button id="enviar" class="boton" type="button">Simular</button>
+                </div>
+
+                <div class="seccionesResultados" id="resultados"></div>
+
+            </form>
+        </section>
+        <!-- Simulador - Final -->
+
+        <!-- Formmulario - Inicio -->
+        <section id="contacto">
+            <form class="simuladorYformulario">
+                <article class="row">
+                    <h2 class="col-lg-12">¡Nos encantaría escuchar tu opinión!</h2>
+                    <p class="col-lg-12">
+                        Agradecemos tu participación en nuestro sitio. Tu opinión es muy
+                        valiosa para nosotros, ya que nos ayuda a mejorar y brindarte la
+                        mejor experiencia posible. Valoramos tus comentarios y sugerencias,
+                        y estamos comprometidos a utilizarlos para seguir perfeccionando
+                        nuestros servicios.
+                    </p>
+                    <br />
+                    <p class="col-lg-12">
+                        Queremos asegurarnos de que tu experiencia con nuestro simulador de
+                        gastos para viajes sea excepcional. Estamos aquí para escucharte y
+                        trabajar en conjunto para lograrlo. Gracias por ser parte de nuestro
+                        viaje y esperamos con entusiasmo recibir tus comentarios para seguir
+                        mejorando.
+                    </p>
+                </article>
+
+                <div class="seccionesSimulador">
+                    <div class="seccionFormulario row ">
+                        <input class="col-lg-6 col-md-10" type="text" name="nombre" placeholder="Nombre y Apellido" />
+                    </div>
+                    <div class="seccionFormulario row">
+                        <input class="col-lg-6 col-md-10" type="email" name="correo" placeholder="Correo electrónico" />
+                    </div>
+                    <div class="seccionFormulario row">
+                        <textarea class="col-lg-6 col-md-10 areaTexto" name="comentario"
+                            placeholder="Escriba su mensaje"></textarea>
+                    </div>
+                    <div class="row">
+                        <button class="boton col-lg-3 boton" type="submit">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- Formmulario - Final -->
+        <!-- Footer - Inicio -->
+
+        <a class="redes botonTop" href="#"><i class="fa-solid fa-circle-chevron-up"></i></a>
+
+        <footer class="pieDePagina">
+            <div>
+                <a class="redes" href="https://github.com/DiegoG379" target="_blank"><i
+                        class="fa-brands fa-github"></i></a>
+                <a class="redes" href=""><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <p class="derechos">
+                Diego García © 2023. Todos los derechos reservados.
+            </p>
+        </footer>
+        <!-- Footer - Final -->
+    </div>
+    <!-- Contenedor del contenido principal del sitio - Final -->
 
     <!-- Bootstrap V5.2 - Inicio -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

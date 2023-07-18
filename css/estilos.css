@@ -12,10 +12,80 @@
   font-family: patua;
   src: url(../media/fonts/PatuaOne-Regular.ttf);
 }
+.logoCarga {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logoEstatico {
+  width: 100px;
+  height: 100px;
+}
+
+.avion {
+  width: 33%;
+  height: auto;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  animation: avionGiratorio 5s linear infinite;
+  animation-timing-function: linear;
+  transform-origin: 0px -40px;
+}
+
+.barco {
+  width: 33%;
+  height: auto;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  animation: barcoGiratorio 5s linear infinite;
+  animation-timing-function: linear;
+  transform-origin: 0px -45px;
+}
+
+.metro {
+  width: 33%;
+  height: auto;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  animation: metroGiratorio 5s linear infinite;
+  animation-timing-function: linear;
+  transform-origin: 0px -40px;
+}
+
+@keyframes avionGiratorio {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes barcoGiratorio {
+  0% {
+    transform: rotate(120deg);
+  }
+  100% {
+    transform: rotate(480deg);
+  }
+}
+@keyframes metroGiratorio {
+  0% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(600deg);
+  }
+}
 body {
   background-repeat: repeat;
   background-size: 20% auto;
-  background-image: url(../media/wallpaper.webp);
+  background-color: #D1E3FF;
 }
 
 .navbar {
