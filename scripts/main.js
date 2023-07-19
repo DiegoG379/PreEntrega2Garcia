@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        document.body.style.backgroundImage = 'url(../media/wallpaper.webp)';
+        document.body.style.backgroundImage = 'url(media/wallpaper.webp)';
     }, 3000);
 });
 
