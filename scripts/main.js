@@ -49,14 +49,28 @@ function convertirDivisa() {
     let resultado;
 
     if (isNaN(monto)) {
-        resultado = 'Ingrese un monto válido a convertir';
-        document.getElementById('resultado').innerHTML = resultado;
+        Swal.fire({
+            icon: 'warning',
+            title: 'Ingrese un monto válido a convertir',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'my-custom-button',
+                popup: 'my-custom-popup'
+            }
+        });
     } else if (conversorDivisa[monedaDe] && conversorDivisa[monedaDe][monedaA]) {
         resultado = monto * conversorDivisa[monedaDe][monedaA];
         document.getElementById('resultado').innerHTML = `${monedaDe.toUpperCase()}${monto} = ${monedaA.toUpperCase()}${resultado}`;
     } else {
-        resultado = 'No se pueden convertir las mismas divisas.';
-        document.getElementById('resultado').innerHTML = resultado;
+        Swal.fire({
+            icon: 'warning',
+            title: 'Convertir la misma divisa no es posible.',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'my-custom-button',
+                popup: 'my-custom-popup'
+            }
+        });
     }
 }
 

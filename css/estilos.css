@@ -12,6 +12,34 @@
   font-family: patua;
   src: url(../media/fonts/PatuaOne-Regular.ttf);
 }
+body {
+  background-repeat: repeat;
+  background-size: 20% auto;
+  background-color: #D1E3FF;
+}
+
+.my-custom-button {
+  margin: 10px auto 10px auto;
+  padding: 2px 5px 2px 5px;
+  font-family: patua;
+  width: 100px;
+  color: #D1E3FF;
+  background-color: #8FA5C7;
+  box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
+  border-radius: 6px;
+}
+.my-custom-button:hover {
+  color: #8FA5C7;
+  background-color: #F58742;
+  box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+}
+
+.my-custom-popup {
+  border-radius: 6px;
+  background-color: #D1E3FF;
+  box-shadow: 2px 2px 15px #F58742, -2px -2px 15px #F58742;
+}
+
 .logoCarga {
   text-align: center;
   position: absolute;
@@ -82,12 +110,6 @@
     transform: rotate(600deg);
   }
 }
-body {
-  background-repeat: repeat;
-  background-size: 20% auto;
-  background-color: #D1E3FF;
-}
-
 .navbar {
   height: 100px;
   background-color: #8FA5C7;
@@ -129,6 +151,7 @@ body {
 }
 
 .introduccion {
+  border-radius: 6px;
   height: auto;
   width: 75%;
   background-color: #8FA5C7;
@@ -178,6 +201,7 @@ body {
   }
 }
 .simuladorYformulario {
+  border-radius: 6px;
   color: black;
   height: auto;
   width: 75%;
@@ -215,10 +239,12 @@ body {
 }
 
 .conversorContenedor {
+  border-radius: 6px;
   margin: 15px 10px 15px 10px;
 }
 
 .conversor {
+  border-radius: 6px;
   background-color: #D1E3FF;
   box-shadow: 2px 2px 15px #F58742, -2px -2px 15px #F58742;
   margin: 10px auto 10px auto;
@@ -228,10 +254,12 @@ body {
   font-weight: bold;
 }
 .conversor select {
+  border-radius: 6px;
   text-align: center;
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
 }
 .conversor input {
+  border-radius: 6px;
   text-align: center;
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
 }
@@ -246,15 +274,18 @@ body {
 }
 
 .seccionesSimulador {
+  border-radius: 6px;
   background-color: #D1E3FF;
   box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
   margin: 15px 10px 15px 10px;
 }
 .seccionesSimulador input {
+  border-radius: 6px;
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
   margin: 10px auto 10px auto;
 }
 .seccionesSimulador select {
+  border-radius: 6px;
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
   margin: 10px auto 10px auto;
 }
@@ -270,6 +301,7 @@ body {
 }
 
 .seccionesResultados {
+  border-radius: 6px;
   background-color: #D1E3FF;
   box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
   margin: 15px 10px 15px 10px;
@@ -293,6 +325,7 @@ body {
 }
 .seccionFormulario input {
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
+  border-radius: 6px;
 }
 .seccionFormulario textarea {
   box-shadow: 2px 2px 4px #8FA5C7, -2px -2px 4px #8FA5C7;
@@ -300,6 +333,7 @@ body {
   font-family: arimo;
   height: 150px;
   text-align: center;
+  border-radius: 6px;
 }
 
 .boton {
@@ -310,6 +344,7 @@ body {
   color: #D1E3FF;
   background-color: #8FA5C7;
   box-shadow: 2px 2px 4px #F58742, -2px -2px 4px #F58742;
+  border-radius: 6px;
 }
 .boton:hover {
   color: #8FA5C7;

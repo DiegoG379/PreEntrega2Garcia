@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+$color1: #D1E3FF;
+$color2: #8FA5C7;
+$color3: #F58742;
+
 //Fuentes
 @font-face {
   font-family: arimo;
@@ -15,10 +19,38 @@
   src: url(../media/fonts/PatuaOne-Regular.ttf);
 }
 
-$color1: #D1E3FF;
-$color2: #8FA5C7;
-$color3: #F58742;
+body {
+  background-repeat: repeat;
+  background-size: 20% auto;
+  background-color: $color1;
+}
 
+//Estilos de las alertas de SweetAlert2 - Inicio
+.my-custom-button{
+  margin: 10px auto 10px auto;
+  padding: 2px 5px 2px 5px;
+  font-family: patua;
+  width: 100px;
+  color: $color1;
+  background-color: $color2;
+  box-shadow: 2px 2px 4px $color3, -2px -2px 4px $color3;
+  border-radius: 6px;
+
+  &:hover{
+    color: $color2;
+    background-color: $color3;
+    box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
+  }
+}
+
+.my-custom-popup{
+  border-radius: 6px;
+  background-color: $color1;
+  box-shadow: 2px 2px 15px $color3, -2px -2px 15px $color3;
+}
+//Estilos de las alertas de SweetAlert2 - Final
+
+//Estilos visuales del spinner de carga - Inicio
 .logoCarga {
   text-align: center;
   position: absolute;
@@ -91,12 +123,7 @@ $color3: #F58742;
     transform: rotate(600deg);
   }
 }
-
-body {
-  background-repeat: repeat;
-  background-size: 20% auto;
-  background-color: $color1;
-}
+//Estilos visuales del spinner de carga - Final
 
 // Barra de navegación - Inicio
 .navbar {
@@ -143,6 +170,7 @@ body {
 // Barra de navegación - Final
 
 .introduccion {
+  border-radius: 6px;
   height: auto;
   width: 75%;
   background-color: $color2;
@@ -197,6 +225,7 @@ body {
 //Simulador - Inicio
 
 .simuladorYformulario {
+  border-radius: 6px;
   color: black;
   height: auto;
   width: 75%;
@@ -238,10 +267,12 @@ body {
 }
 
 .conversorContenedor{
+  border-radius: 6px;
   margin: 15px 10px 15px 10px;;
 }
 
 .conversor {
+  border-radius: 6px;
   background-color: $color1;
   box-shadow: 2px 2px 15px $color3, -2px -2px 15px $color3;
   margin: 10px auto 10px auto;
@@ -252,10 +283,12 @@ body {
   }
 
   & select {
+    border-radius: 6px;
     text-align: center;
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
   }
   & input{
+    border-radius: 6px;
     text-align: center;
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
   }
@@ -273,16 +306,19 @@ body {
 }
 
 .seccionesSimulador {
+  border-radius: 6px;
   background-color: $color1;
   box-shadow: 2px 2px 4px $color3, -2px -2px 4px $color3;
   margin: 15px 10px 15px 10px;
 
   & input {
+    border-radius: 6px;
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
     margin: 10px auto 10px auto;
   }
 
   & select {
+    border-radius: 6px;
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
     margin: 10px auto 10px auto;
   }
@@ -301,6 +337,7 @@ body {
 }
 
 .seccionesResultados{
+  border-radius: 6px;
   background-color: $color1;
   box-shadow: 2px 2px 4px $color3, -2px -2px 4px $color3;
   margin: 15px 10px 15px 10px;
@@ -328,6 +365,7 @@ body {
 
   & input{
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
+    border-radius: 6px;
   }
 
   & textarea{
@@ -336,6 +374,7 @@ body {
   font-family: arimo;
   height: 150px;
   text-align: center;
+  border-radius: 6px;
 }
 }
 
@@ -347,12 +386,12 @@ body {
   color: $color1;
   background-color: $color2;
   box-shadow: 2px 2px 4px $color3, -2px -2px 4px $color3;
+  border-radius: 6px;
 
   &:hover{
     color: $color2;
     background-color: $color3;
     box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color2;
-
   }
 }
 
