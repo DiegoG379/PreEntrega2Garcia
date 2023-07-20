@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //Simulador de gastos - Inicio
-
 // Verificar que sean solamente números y además positivos en todos los campos input
 function validarCampo(input) {
     let valor = parseInt(input.value);
@@ -79,7 +78,6 @@ let actividades = [];
 let gastoExtraPersona = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Restaurar la lista de actividades al cargar la página
     restaurarActividades();
 
     function agregarActividad() {
@@ -179,7 +177,7 @@ let consumoCombustibleInput = document.getElementById("consumoCombustible");
 let distanciaKmInput = document.getElementById("distanciaKm");
 let precioCombustibleInput = document.getElementById("precioCombustible");
 
-function mostrarCamposAdicionales() {
+function mostrarCamposAutomovil() {
     let medioTransporte = medioTransporteSelect.value;
     let resultado = {};
 
@@ -191,7 +189,7 @@ function mostrarCamposAdicionales() {
         let consumoCombustibleValor = parseFloat(consumoCombustibleInput.value) || 15;
         let distanciaKmValor = parseFloat(distanciaKmInput.value);
         let precioCombustibleValor = parseFloat(precioCombustibleInput.value);
-        let gastoAutomovil = (distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
+        let gastoAutomovil = parseInt(distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
 
         resultado.medioTransporte = "automovil";
         resultado.gasto = gastoAutomovil;
@@ -200,7 +198,7 @@ function mostrarCamposAdicionales() {
         pasajesInput.style.display = "block";
         pasajesInput.disabled = false;
 
-        let pasajesValor = parseFloat(pasajesInput.value);
+        let pasajesValor = parseInt(pasajesInput.value);
 
         resultado.medioTransporte = "otros";
         resultado.gasto = pasajesValor;
@@ -213,7 +211,7 @@ function mostrarCamposAdicionales() {
 const tipoComidasSelect = document.getElementById("tipoComidas");
 const comidasInput = document.getElementById("comidas");
 
-function mostrarOcultarCampoComidas() {
+function ocultarCampoComidas() {
     if (tipoComidasSelect.value === "all-inclusive") {
         comidasInput.style.display = "none";
         gastoComidaDia = 0;
@@ -228,11 +226,11 @@ function mostrarOcultarCampoComidas() {
 document.addEventListener('DOMContentLoaded', function () {
 
     medioTransporteSelect.addEventListener("change", function () {
-        mostrarCamposAdicionales();
+        mostrarCamposAutomovil();
     });
 
     tipoComidasSelect.addEventListener("change", function () {
-        mostrarOcultarCampoComidas();
+        ocultarCampoComidas();
     });
 
     let enviarButton = document.getElementById('enviar');
@@ -242,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let diasViaje = parseInt(document.getElementById('duracion').value);
         let cantidadPersonas = parseInt(document.getElementById('personas').value);
         let gastoAlojamiento = parseInt(document.getElementById('alojamiento').value);
-        let gastoComidaDia = mostrarOcultarCampoComidas();
-        let gastoTransportePersona = mostrarCamposAdicionales();
+        let gastoComidaDia = ocultarCampoComidas();
+        let gastoTransportePersona = mostrarCamposAutomovil();
         if (gastoTransportePersona.medioTransporte === "automovil") {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto / cantidadPersonas);
         } else {
@@ -251,14 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         //Verifica que todos los campos hayan sido llenados.
-        if (
-            isNaN(presupuesto) ||
-            isNaN(diasViaje) ||
-            isNaN(cantidadPersonas) ||
-            isNaN(gastoAlojamiento) ||
-            isNaN(gastoTransportePersona) ||
-            isNaN(gastoComidaDia)
-        ) {
+        if (isNaN(presupuesto) || isNaN(diasViaje) || isNaN(cantidadPersonas) || isNaN(gastoAlojamiento) || isNaN(gastoTransportePersona) || isNaN(gastoComidaDia)) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Por favor, completa todos los campos antes de simular.',
@@ -277,12 +268,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let presupuestoRestante = presupuesto - costoTotalViaje;
 
         // Generar resultados en el archivo HTML 
-
         let SeleccionTipoTransporte = document.getElementById("medioTransporte").value;
         let SeleccionTipoAlojamiento = document.getElementById("tipoAlojamiento").value;
         let SeleccionTipoComidas = document.getElementById("tipoComidas").value;
-
-
         let resultadosDiv = document.getElementById("resultados");
         resultadosDiv.innerHTML = "";
 
@@ -299,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
 
         let h3Elemento = document.createElement("h3");
-        h3Elemento.textContent = "Detalles de tu última simulación de viaje";
+        h3Elemento.textContent = "Detalles de tu $imulación de viaje";
         resultadosDiv.appendChild(h3Elemento);
 
         resultados.forEach((resultado) => {

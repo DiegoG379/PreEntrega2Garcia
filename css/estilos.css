@@ -187,7 +187,7 @@ body {
 }
 .imagenes img {
   border: solid #F58742 2px;
-  width: 25%;
+  width: 55vh;
   height: auto;
   margin: 0;
 }
@@ -197,7 +197,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-250%);
+    transform: translateX(-550vh);
   }
 }
 .simuladorYformulario {
@@ -427,7 +427,15 @@ body {
     margin: 15px auto 0px auto;
   }
   .imagenes img {
-    width: 65%;
+    width: 30vh;
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-300vh);
+    }
   }
   .simuladorYformulario {
     margin: 15px auto 0px auto;
@@ -508,7 +516,15 @@ body {
     margin: 20px auto 0px auto;
   }
   .imagenes img {
-    width: 55%;
+    width: 40vh;
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-400vh);
+    }
   }
   .simuladorYformulario {
     margin: 20px auto 0px auto;
@@ -568,7 +584,15 @@ body {
     margin: 25px auto 0px auto;
   }
   .imagenes img {
-    width: 37%;
+    width: 45vh;
+  }
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-450vh);
+    }
   }
   .simuladorYformulario {
     margin: 25px auto 0px auto;
