@@ -1,6 +1,6 @@
 // Se muestra logo de carga
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
+document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.body.style.backgroundImage = 'url(media/wallpaper.webp)';
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Ingresa una actividad válida y respectivo su precio.',
+                title: 'Ingresa una actividad válida y su respectivo precio.',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'my-custom-button',
@@ -189,8 +189,8 @@ function mostrarCamposAdicionales() {
         pasajesInput.disabled = true;
 
         let consumoCombustibleValor = parseFloat(consumoCombustibleInput.value) || 15;
-        let distanciaKmValor = parseFloat(distanciaKmInput.value) || 0;
-        let precioCombustibleValor = parseFloat(precioCombustibleInput.value) || 0;
+        let distanciaKmValor = parseFloat(distanciaKmInput.value);
+        let precioCombustibleValor = parseFloat(precioCombustibleInput.value);
         let gastoAutomovil = (distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
 
         resultado.medioTransporte = "automovil";
@@ -200,7 +200,7 @@ function mostrarCamposAdicionales() {
         pasajesInput.style.display = "block";
         pasajesInput.disabled = false;
 
-        let pasajesValor = parseFloat(pasajesInput.value) || 0;
+        let pasajesValor = parseFloat(pasajesInput.value);
 
         resultado.medioTransporte = "otros";
         resultado.gasto = pasajesValor;
@@ -226,7 +226,7 @@ function mostrarOcultarCampoComidas() {
 
 // Toma de datos, procesamiento de los mismos y devolución de recomendaciones
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     medioTransporteSelect.addEventListener("change", function () {
         mostrarCamposAdicionales();
     });
@@ -248,6 +248,27 @@ document.addEventListener('DOMContentLoaded', function () {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto / cantidadPersonas);
         } else {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto);
+        }
+
+        //Verifica que todos los campos hayan sido llenados.
+        if (
+            isNaN(presupuesto) ||
+            isNaN(diasViaje) ||
+            isNaN(cantidadPersonas) ||
+            isNaN(gastoAlojamiento) ||
+            isNaN(gastoTransportePersona) ||
+            isNaN(gastoComidaDia)
+        ) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor, completa todos los campos antes de simular.',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'my-custom-button',
+                    popup: 'my-custom-popup'
+                }
+            });
+            return;
         }
 
         // Cálculo de costos
