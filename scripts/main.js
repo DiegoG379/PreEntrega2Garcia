@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Simulador de gastos - Inicio
 
-// Verificar que sean solamente números y además positivos en los campos input
+// Verificar que sean solamente números y además positivos en todos los campos input
 function validarCampo(input) {
     let valor = parseInt(input.value);
 
@@ -87,7 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const precio = parseFloat(document.getElementById("precioInput").value);
 
         if (actividad.trim() === "" || isNaN(precio) || precio <= 0) {
-            alert("Por favor, ingresa una actividad válida y su precio.");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ingresa una actividad válida y respectivo su precio.',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'my-custom-button',
+                    popup: 'my-custom-popup'
+                }
+            });
             return;
         }
 
@@ -163,48 +171,69 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("agregar").addEventListener("click", agregarActividad);
 });
 
+// Función para mostrar u ocultar los campos de transporte según la opción seleccionada.
+let medioTransporteSelect = document.getElementById("medioTransporte");
+let pasajesInput = document.getElementById("pasajes");
+let camposAdicionalesDiv = document.getElementById("camposAdicionales");
+let consumoCombustibleInput = document.getElementById("consumoCombustible");
+let distanciaKmInput = document.getElementById("distanciaKm");
+let precioCombustibleInput = document.getElementById("precioCombustible");
+
+function mostrarCamposAdicionales() {
+    let medioTransporte = medioTransporteSelect.value;
+    let resultado = {};
+
+    if (medioTransporte === "automovil") {
+        camposAdicionalesDiv.style.display = "block";
+        pasajesInput.style.display = "none";
+        pasajesInput.disabled = true;
+
+        let consumoCombustibleValor = parseFloat(consumoCombustibleInput.value) || 15;
+        let distanciaKmValor = parseFloat(distanciaKmInput.value) || 0;
+        let precioCombustibleValor = parseFloat(precioCombustibleInput.value) || 0;
+        let gastoAutomovil = (distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
+
+        resultado.medioTransporte = "automovil";
+        resultado.gasto = gastoAutomovil;
+    } else {
+        camposAdicionalesDiv.style.display = "none";
+        pasajesInput.style.display = "block";
+        pasajesInput.disabled = false;
+
+        let pasajesValor = parseFloat(pasajesInput.value) || 0;
+
+        resultado.medioTransporte = "otros";
+        resultado.gasto = pasajesValor;
+    }
+
+    return resultado;
+}
+
+// Función para mostrar u ocultar el campo de ingreso de gastos de comidas según la opción seleccionada.
+const tipoComidasSelect = document.getElementById("tipoComidas");
+const comidasInput = document.getElementById("comidas");
+
+function mostrarOcultarCampoComidas() {
+    if (tipoComidasSelect.value === "all-inclusive") {
+        comidasInput.style.display = "none";
+        gastoComidaDia = 0;
+    } else {
+        comidasInput.style.display = "block";
+        gastoComidaDia = parseInt(comidasInput.value);
+    }
+    return gastoComidaDia;
+}
+
 // Toma de datos, procesamiento de los mismos y devolución de recomendaciones
 document.addEventListener('DOMContentLoaded', function () {
-    let medioTransporteSelect = document.getElementById("medioTransporte");
-    let pasajesInput = document.getElementById("pasajes");
-    let camposAdicionalesDiv = document.getElementById("camposAdicionales");
-    let consumoCombustibleInput = document.getElementById("consumoCombustible");
-    let distanciaKmInput = document.getElementById("distanciaKm");
-    let precioCombustibleInput = document.getElementById("precioCombustible");
-
+    
     medioTransporteSelect.addEventListener("change", function () {
         mostrarCamposAdicionales();
     });
 
-    function mostrarCamposAdicionales() {
-        let medioTransporte = medioTransporteSelect.value;
-        let resultado = {};
-
-        if (medioTransporte === "automovil") {
-            camposAdicionalesDiv.style.display = "block";
-            pasajesInput.style.display = "none";
-            pasajesInput.disabled = true;
-
-            let consumoCombustibleValor = parseFloat(consumoCombustibleInput.value) || 15;
-            let distanciaKmValor = parseFloat(distanciaKmInput.value) || 0;
-            let precioCombustibleValor = parseFloat(precioCombustibleInput.value) || 0;
-            let gastoAutomovil = (distanciaKmValor / consumoCombustibleValor) * precioCombustibleValor;
-
-            resultado.medioTransporte = "automovil";
-            resultado.gasto = gastoAutomovil;
-        } else {
-            camposAdicionalesDiv.style.display = "none";
-            pasajesInput.style.display = "block";
-            pasajesInput.disabled = false;
-
-            let pasajesValor = parseFloat(pasajesInput.value) || 0;
-
-            resultado.medioTransporte = "otros";
-            resultado.gasto = pasajesValor;
-        }
-
-        return resultado;
-    }
+    tipoComidasSelect.addEventListener("change", function () {
+        mostrarOcultarCampoComidas();
+    });
 
     let enviarButton = document.getElementById('enviar');
     enviarButton.addEventListener('click', function () {
@@ -213,8 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let diasViaje = parseInt(document.getElementById('duracion').value);
         let cantidadPersonas = parseInt(document.getElementById('personas').value);
         let gastoAlojamiento = parseInt(document.getElementById('alojamiento').value);
-        let gastoComidaDia = parseInt(document.getElementById('comidas').value);
-
+        let gastoComidaDia = mostrarOcultarCampoComidas();
         let gastoTransportePersona = mostrarCamposAdicionales();
         if (gastoTransportePersona.medioTransporte === "automovil") {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto / cantidadPersonas);
@@ -320,7 +348,7 @@ const formulario = document.querySelector('#simulador');
 const btnEnviar = document.querySelector('#enviar');
 
 btnEnviar.addEventListener('click', function () {
-    const campos = formulario.querySelectorAll('input');
+    const campos = formulario.querySelectorAll('input, select');
     const valores = {};
 
     campos.forEach(function (campo) {

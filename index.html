@@ -248,9 +248,7 @@
                 <!-- Sección Comidas -->
                 <div class="seccionesSimulador row">
                     <h3 class="col-12">Comidas</h3>
-                    <p class="col-12">Basado en la investigación realizada para tu viaje, escribe el monto previsto que
-                        tienes pensado gastar en comida por día. Además selecciona el régimen de comidas brindado por tu
-                        alojamiento:</p>
+                    <p class="col-12">Basado en la investigación realizada para tu viaje, escribe el monto previsto que tienes pensado gastar en comida por día. Además selecciona el régimen de comidas brindado por tu alojamiento:</p>
                     <p class="col-12 aclaraciones">
                         <strong>-All Inclusive:</strong> Incluye las 4 comidas del día.
                     </p>
@@ -260,17 +258,17 @@
                     <p class="col-12 aclaraciones">
                         <strong>-Solo Desayuno:</strong> Únicamente se brinda el desayuno.
                     </p>
-                    <div class="col-lg-12 d-flex flex-wrap">
-                        <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoComidas" name="tipoComidas">
+                    <div class="col-lg-12 d-flex flex-wrap" id="comidasContainer">
+                        <select class="col-lg-2 col-md-4 col-sm-4 col-12 col-auto" id="tipoComidas" name="tipoComidas" onchange="mostrarOcultarCampoComidas()">
                             <option value="sin comidas">Ninguna</option>
                             <option value="all-inclusive">All-inclusive</option>
                             <option value="media pensión">Media pensión</option>
                             <option value="solo desayuno">Desayuno</option>
                         </select>
-                        <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number" name="comidas"
-                            placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0" />
+                        <input id="comidas" class="col-lg-4 col-md-9 col-sm-10 col-12" type="number" name="comidas" placeholder="Gasto previsto de comida" oninput="validarCampo(this)" min="0" style="display: block;" />
                     </div>
                 </div>
+                        
                 <!-- Sección Otras actividades -->
                 <div class="seccionesSimulador row">
                     <h3 class="col-lg-12">Otras actividades</h3>
