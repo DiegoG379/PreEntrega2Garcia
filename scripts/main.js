@@ -231,11 +231,25 @@ document.addEventListener('DOMContentLoaded', function () {
             gastoTransportePersona = parseInt(gastoTransportePersona.gasto);
         }
 
-        //Verifica que todos los campos hayan sido llenados.
+        //Verifica que todos los campos hayan sido llenados y ademas que Presupuesto, DiasViaje y CantidadPersonas no sean 0.
+        if (presupuesto === 0 || diasViaje === 0 || cantidadPersonas === 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor, ingrese valores válidos para continuar.',
+                html: 'Los siguientes campos deben ser mayores a cero:<br><strong>Presupuesto</strong><br><strong>Duración en días</strong><br><strong>Cantidad de personas</strong>',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'my-custom-button',
+                    popup: 'my-custom-popup'
+                }
+            });
+            return;
+        }
+        
         if (isNaN(presupuesto) || isNaN(diasViaje) || isNaN(cantidadPersonas) || isNaN(gastoAlojamiento) || isNaN(gastoTransportePersona) || isNaN(gastoComidaDia)) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Por favor, completa todos los campos antes de simular.',
+                title: 'Completa todos los campos antes de simular.',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'my-custom-button',
