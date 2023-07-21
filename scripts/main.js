@@ -18,36 +18,12 @@ function validarCampo(input) {
 }
 
 // Conversor de divisas
-let conversorDivisa = {
-    uyu: {
-        usd: 0.025,
-        eur: 0.024,
-        ars: 6.85
-    },
-    usd: {
-        uyu: 40,
-        eur: 0.96,
-        ars: 262.55
-    },
-    eur: {
-        uyu: 42.16,
-        usd: 1.04,
-        ars: 288.66
-    },
-    ars: {
-        uyu: 0.15,
-        usd: 0.0038,
-        eur: 0.0035
-    }
-};
+async function convertirDivisa() {
+    const monto = document.getElementById("monto").value;
+    const monedaDe = document.getElementById("monedaDe").value;
+    const monedaA = document.getElementById("monedaA").value;
 
-function convertirDivisa() {
-    let monto = parseFloat(document.getElementById('monto').value);
-    let monedaDe = document.getElementById('monedaDe').value;
-    let monedaA = document.getElementById('monedaA').value;
-    let resultado;
-
-    if (isNaN(monto)) {
+    if (isNaN(monto) || monto.trim() === "") {
         Swal.fire({
             icon: 'warning',
             title: 'Ingrese un monto válido a convertir',
@@ -57,19 +33,26 @@ function convertirDivisa() {
                 popup: 'my-custom-popup'
             }
         });
-    } else if (conversorDivisa[monedaDe] && conversorDivisa[monedaDe][monedaA]) {
-        resultado = monto * conversorDivisa[monedaDe][monedaA];
-        document.getElementById('resultado').innerHTML = `${monedaDe.toUpperCase()}${monto} = ${monedaA.toUpperCase()}${resultado}`;
-    } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Convertir la misma divisa no es posible.',
-            buttonsStyling: false,
-            customClass: {
-                confirmButton: 'my-custom-button',
-                popup: 'my-custom-popup'
-            }
-        });
+        return;
+    }
+
+    const url = `https://currency-converter-by-api-ninjas.p.rapidapi.com/v1/convertcurrency?have=${monedaDe.toUpperCase()}&want=${monedaA.toUpperCase()}&amount=${monto}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '1ae058be27mshbc8100951fb20b8p1c6c17jsn8ea181589eae',
+            'X-RapidAPI-Host': 'currency-converter-by-api-ninjas.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const mensajeResultado = `${monto} ${monedaDe.toUpperCase()} = ${result.new_amount} ${monedaA.toUpperCase()}`;
+        const resultadoElement = document.getElementById("resultado");
+        resultadoElement.textContent = `${mensajeResultado}`;
+    } catch (error) {
+        console.error(error);
     }
 }
 
