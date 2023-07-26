@@ -52,7 +52,15 @@ async function convertirDivisa() {
         const resultadoElement = document.getElementById("resultado");
         resultadoElement.textContent = `${mensajeResultado}`;
     } catch (error) {
-        console.error(error);
+        Swal.fire({
+            icon: 'warning',
+            title: 'Ups, algo salió mal. Por favor, inténtalo nuevamente más tarde.',
+            buttonsStyling: false,
+            customClass: {
+                confirmButton: 'my-custom-button',
+                popup: 'my-custom-popup'
+            }
+        });
     }
 }
 
@@ -348,8 +356,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+// Simulador de gastos - Final
 
-// Almacenamiento de datos en el formulario
+// Almacenamiento de datos en el formulario - Inicio
 const formulario = document.querySelector('#simulador');
 const btnEnviar = document.querySelector('#enviar');
 
@@ -394,8 +403,9 @@ function mostrarDatosAlmacenados() {
     }
 }
 mostrarDatosAlmacenados();
+// Almacenamiento de datos en el formulario - Final
 
-// Borrar los datos almacenados en el local storage y limpiar los campos del formulario.
+// Borrar los datos almacenados en el local storage y limpiar los campos del formulario - Inicio
 const btnBorrar = document.getElementById('borrarDatosAlmacenados');
 btnBorrar.addEventListener('click', function () {
     localStorage.clear();
@@ -406,3 +416,4 @@ btnBorrar.addEventListener('click', function () {
     });
     location.reload();
 });
+// Borrar los datos almacenados en el local storage y limpiar los campos del formulario - Final
